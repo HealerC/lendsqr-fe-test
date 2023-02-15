@@ -1,6 +1,9 @@
+import { UserDetails } from "./interfaces";
+
 export const initialState = {
   loggedIn: false,
   loading: false,
+  userList: [] as UserDetails[],
 };
 
 export const Actions = {
