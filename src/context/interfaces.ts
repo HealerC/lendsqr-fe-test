@@ -29,7 +29,7 @@ interface Education {
   monthlyIncome: string[];
   loanRepayment: string;
 }
-type Status = "blacklisted" | "pending" | "inactive" | "active";
+export type Status = "blacklisted" | "pending" | "inactive" | "active";
 export interface UserDetailsAPI {
   id: string;
   createdAt: string;

@@ -6,6 +6,8 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
       return { ...state, loggedIn: true };
     case Actions.LOGOUT:
       return { ...state, loggedIn: false };
+    case Actions.SET_USERS:
+      return { ...state, userList: action.payload };
     default:
       throw new Error();
   }
