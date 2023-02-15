@@ -1,5 +1,6 @@
 export const initialState = {
-  loggedIn: true,
+  loggedIn: false,
+  loading: false,
 };
 
 export const Actions = {
