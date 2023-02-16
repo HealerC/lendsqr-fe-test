@@ -8,6 +8,26 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
       return { ...state, loggedIn: false };
     case Actions.SET_USERS:
       return { ...state, userList: action.payload };
+    case Actions.BLACK_LIST_USER: {
+      const userId = action.payload;
+      const userList = state.userList.map((user) => {
+        if (user.id === userId) {
+          user.status = "blacklisted";
+        }
+        return user;
+      });
+      return { ...state, userList };
+    }
+    case Actions.ACTIVATE_USER: {
+      const userId = action.payload;
+      const userList = state.userList.map((user) => {
+        if (user.id === userId) {
+          user.status = "active";
+        }
+        return user;
+      });
+      return { ...state, userList };
+    }
     default:
       throw new Error();
   }

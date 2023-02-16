@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const apiUrl =
   "https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users";
 export default function UserList() {
-  const { setUsers, userList } = useAppContext();
+  const { setUsers, userList, blacklistUser, activateUser } = useAppContext();
   const navigate = useNavigate();
   async function getUsers() {
     try {
@@ -40,6 +40,10 @@ export default function UserList() {
             <button onClick={() => navigate(`/users/${user.id}`)}>
               View details
             </button>
+            <button onClick={() => blacklistUser(user.id)}>
+              Blacklist user
+            </button>
+            <button onClick={() => activateUser(user.id)}>Activate user</button>
           </li>
         ))}
       </ul>

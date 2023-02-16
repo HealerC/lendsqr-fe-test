@@ -9,6 +9,8 @@ interface AppContext extends AppState {
   login: () => void;
   logout: () => void;
   setUsers: (userList: UserDetails[]) => void;
+  blacklistUser: (userId: string) => void;
+  activateUser: (userId: string) => void;
 }
 
 const AppContext = createContext<AppContext | undefined>(undefined);
@@ -28,8 +30,18 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: Actions.SET_USERS, payload: userList });
   };
 
+  const blacklistUser = (userId: string) => {
+    dispatch({ type: Actions.BLACK_LIST_USER, payload: userId });
+  };
+
+  const activateUser = (userId: string) => {
+    dispatch({ type: Actions.ACTIVATE_USER, payload: userId });
+  };
+
   return (
-    <AppContext.Provider value={{ ...state, login, logout, setUsers }}>
+    <AppContext.Provider
+      value={{ ...state, login, logout, setUsers, blacklistUser, activateUser }}
+    >
       {children}
     </AppContext.Provider>
   );
