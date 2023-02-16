@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { useAppContext } from "../../context/context";
+import { useParams, Link } from "react-router-dom";
+import { useAppContext } from "../../../context/context";
 import history from "history/browser";
 
 export default function User() {
@@ -22,6 +22,13 @@ export default function User() {
       >
         Activate user
       </button>
+      <section className="otherDetails">
+        <Link to={`/users/${userId}/Documents`}>Documents</Link>
+        <Link to={`/users/${userId}/Bank Details`}>Bank Details</Link>
+        <Link to={`/users/${userId}/Loans`}>Loans</Link>
+        <Link to={`/users/${userId}/Savings`}>Savings</Link>
+        <Link to={`/users/${userId}/App and System`}>App and System</Link>
+      </section>
       <section>
         <h1>Personal information</h1>
         {JSON.stringify(user?.profile)}
