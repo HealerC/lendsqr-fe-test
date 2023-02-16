@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useAppContext } from "../../context/context";
+import history from "history/browser";
 
 export default function User() {
   const { userId } = useParams();
@@ -8,6 +9,7 @@ export default function User() {
   return (
     <div>
       <h1>User details</h1>
+      <button onClick={() => history.back()}>Back to users</button>
       <button
         disabled={user?.status === "blacklisted"}
         onClick={() => blacklistUser(userId as string)}
