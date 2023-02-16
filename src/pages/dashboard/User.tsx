@@ -3,28 +3,38 @@ import { useAppContext } from "../../context/context";
 
 export default function User() {
   const { userId } = useParams();
-  const { userList } = useAppContext();
-  const user = userList[Number(userId)];
+  const { userList, activateUser, blacklistUser } = useAppContext();
+  const user = userList.find((person) => person.id === userId);
   return (
     <div>
       <h1>User details</h1>
-      <button>Blacklist user</button>
-      <button>Activate user</button>
+      <button
+        disabled={user?.status === "blacklisted"}
+        onClick={() => blacklistUser(userId as string)}
+      >
+        Blacklist user
+      </button>
+      <button
+        disabled={user?.status === "active"}
+        onClick={() => activateUser(userId as string)}
+      >
+        Activate user
+      </button>
       <section>
         <h1>Personal information</h1>
-        {JSON.stringify(user.profile)}
+        {JSON.stringify(user?.profile)}
       </section>
       <section>
         <h1>Education and employment</h1>
-        {JSON.stringify(user.education)}
+        {JSON.stringify(user?.education)}
       </section>
       <section>
         <h1>Socials</h1>
-        {JSON.stringify(user.socials)}
+        {JSON.stringify(user?.socials)}
       </section>
       <section>
         <h1>Guarantor</h1>
-        {JSON.stringify(user.guarantor)}
+        {JSON.stringify(user?.guarantor)}
       </section>
     </div>
   );
