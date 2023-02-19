@@ -2,6 +2,8 @@ import React, { useContext, createContext, useReducer } from "react";
 import { initialState, Actions } from "./state-actions";
 import { reducer } from "./reducer";
 import { UserDetails } from "./interfaces";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "../utils/app-theme";
 
 type AppState = typeof initialState;
 
@@ -42,7 +44,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     <AppContext.Provider
       value={{ ...state, login, logout, setUsers, blacklistUser, activateUser }}
     >
-      {children}
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </AppContext.Provider>
   );
 };
