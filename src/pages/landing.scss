@@ -1,0 +1,92 @@
+@use "../styles/elements";
+
+.site-logo {
+  position: fixed;
+  width: 173.76px;
+  height: 36px;
+  left: 27px;
+  top: 27px;
+}
+.MuiContainer-root.container {
+  display: flex;
+  height: 100vh;
+
+  .landing-item {
+    flex-grow: 1;
+    &:first-child {
+      //   background-color: pink;
+      display: none;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .login-container {
+      padding-left: 10px;
+      padding-right: 10px;
+      //   background-color: beige;
+
+      h1 {
+        color: #213f7d;
+        margin-bottom: 10px;
+      }
+      p {
+        color: #545f7d;
+        margin-bottom: 60px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        // background-color: yellow;
+        width: 400px;
+        * {
+          margin-bottom: 5px;
+        }
+
+        .forgot-password {
+          align-self: flex-start;
+          padding-left: 0;
+        }
+        [type="submit"] {
+          @extend %landing-action-buttons;
+          font-size: 14px;
+          line-height: 19px;
+          color: #ffffff;
+          padding-top: 15px;
+          padding-bottom: 15px;
+        }
+      }
+    }
+  }
+  //   .MuiOutlinedInput-root {
+  //     border-radius: 50px;
+  //     border: 10px dotted red;
+  //   }
+}
+@media (min-width: 700px) {
+  .site-logo {
+    left: 57px;
+    top: 66px;
+  }
+  .MuiContainer-root.container {
+    .landing-item {
+      &:first-child {
+        display: flex;
+      }
+      .landing-banner {
+        width: 90%;
+      }
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .MuiContainer-root.container {
+    max-width: 100%;
+    .landing-item {
+      .landing-banner {
+        width: 80%;
+      }
+    }
+  }
+}
