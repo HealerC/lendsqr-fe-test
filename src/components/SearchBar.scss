@@ -1,0 +1,38 @@
+.search-bar {
+  display: flex;
+}
+.search-text-field {
+  width: 25%;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid hsla(220, 58%, 31%, 0.2);
+  border-radius: 8px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+  padding: 1rem;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  /* #545F7D */
+
+  color: #545f7d;
+  &:hover {
+    border-color: hsla(220, 58%, 31%, 0.5);
+  }
+  &:focus {
+    border-color: hsla(220, 58%, 31%, 0.8);
+    outline: none;
+  }
+}
+.MuiButtonBase-root.search-button {
+  height: 40px;
+  margin: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: none;
+  color: white;
+}
