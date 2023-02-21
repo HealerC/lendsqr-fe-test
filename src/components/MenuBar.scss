@@ -1,0 +1,24 @@
+.head-logos {
+  display: flex;
+  align-items: center;
+  .hamburger-icon {
+    width: 24px;
+    height: auto;
+  }
+}
+
+.MuiAppBar-root.menu-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  // justify-content: space-between;
+
+  main {
+    margin-left: 10rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+  }
+}

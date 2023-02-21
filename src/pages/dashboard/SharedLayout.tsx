@@ -1,9 +1,11 @@
 import { Outlet } from "react-router-dom";
+import "./SharedLayout.scss";
+import MenuBar from "../../components/MenuBar";
 
 export default function SharedLayout() {
   return (
-    <div>
-      SharedLayout
+    <div className="dashboard">
+      <MenuBar />
       <Outlet />
     </div>
   );
