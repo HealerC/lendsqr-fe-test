@@ -1,3 +1,5 @@
+@use "../styles/variables";
+
 .head-logos {
   display: flex;
   align-items: center;
@@ -24,4 +26,18 @@
       margin-right: 2rem;
     }
   }
+}
+
+@media (min-width: 600px) {
+  .head-logos {
+    margin-left: 2rem;
+    .hamburger-wrapper {
+      display: none;
+    }
+  }
+
+  // .MuiAppBar-root.menu-bar {
+  //   width: calc(100% - variables.$drawerWidth);
+  //   margin-left: variables.$drawerWidth;
+  // }
 }

@@ -10,11 +10,15 @@ import hamburgerIcon from "../assets/icons/hamburger.svg";
 import IconButton from "@mui/material/IconButton";
 
 export default function MenuBar() {
-  const { logout } = useAppContext();
+  const { logout, toggleMobileDrawer } = useAppContext();
   return (
     <AppBar className="menu-bar">
       <div className="head-logos">
-        <IconButton sx={{ mx: 1 }}>
+        <IconButton
+          sx={{ mx: 1 }}
+          onClick={toggleMobileDrawer}
+          className="hamburger-wrapper"
+        >
           <img src={hamburgerIcon} className="hamburger-icon" />
         </IconButton>
         <img src={Logo} />
