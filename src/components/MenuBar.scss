@@ -9,11 +9,12 @@
   }
 }
 
-.MuiAppBar-root.menu-bar {
+.MuiPaper-root.MuiAppBar-root.menu-bar {
   display: flex;
   flex-direction: row;
   align-items: center;
   background-color: white;
+  z-index: 9999;
   // justify-content: space-between;
 
   main {
