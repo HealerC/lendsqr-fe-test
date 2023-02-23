@@ -6,8 +6,10 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
       return { ...state, loggedIn: true };
     case Actions.LOGOUT:
       return { ...state, loggedIn: false };
-    case Actions.SET_USERS:
-      return { ...state, userList: action.payload };
+    case Actions.SET_USERS: {
+      const { userList, userListSummary } = action.payload;
+      return { ...state, userList, userListSummary };
+    }
     case Actions.BLACK_LIST_USER: {
       const userId = action.payload;
       const userList = state.userList.map((user) => {

@@ -1,10 +1,11 @@
-import { UserDetails } from "./interfaces";
+import { UserDetails, UserDetailsSummary } from "./interfaces";
 
 export const initialState = {
   loggedIn: false,
   loading: false,
   isMobileDrawerOpen: false,
   userList: [] as UserDetails[],
+  userListSummary: {} as UserDetailsSummary,
 };
 
 export const Actions = {
@@ -21,7 +22,10 @@ export type ActionKeys = typeof Actions[keyof typeof Actions];
 export type ACTIONTYPE =
   | { type: typeof Actions.LOGIN }
   | { type: typeof Actions.LOGOUT }
-  | { type: typeof Actions.SET_USERS; payload: UserDetails[] }
+  | {
+      type: typeof Actions.SET_USERS;
+      payload: { userList: UserDetails[]; userListSummary: UserDetailsSummary };
+    }
   | { type: typeof Actions.BLACK_LIST_USER; payload: string }
   | { type: typeof Actions.ACTIVATE_USER; payload: string }
   | { type: typeof Actions.TOGGLE_MOBILE_DRAWER };

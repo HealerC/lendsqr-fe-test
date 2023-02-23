@@ -48,3 +48,9 @@ export interface UserDetails extends Omit<UserDetailsAPI, "createdAt"> {
   status: Status;
   createdAt: Date;
 }
+export interface UserDetailsSummary {
+  totalUsers: number;
+  activeUsers: number;
+  loanUsers: number;
+  savingsUsers: number;
+}

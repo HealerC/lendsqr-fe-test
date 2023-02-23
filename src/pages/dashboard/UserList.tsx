@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 const apiUrl =
   "https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users";
 export default function UserList() {
-  const { setUsers, userList, blacklistUser, activateUser } = useAppContext();
+  const { setUsers, userList, userListSummary, blacklistUser, activateUser } =
+    useAppContext();
   const navigate = useNavigate();
   async function getUsers() {
     try {
@@ -26,10 +27,10 @@ export default function UserList() {
     <div>
       <h1>Users</h1>
       <section>
-        <p>Users: {Math.floor(Math.random() * userList.length)}</p>
-        <p>Active Users: {Math.floor(Math.random() * userList.length)}</p>
-        <p>Users with loan: {Math.floor(Math.random() * userList.length)}</p>
-        <p>Users with savings: {Math.floor(Math.random() * userList.length)}</p>
+        <p>Users: {userListSummary.totalUsers}</p>
+        <p>Active Users: {userListSummary.activeUsers}</p>
+        <p>Users with loan: {userListSummary.loanUsers}</p>
+        <p>Users with savings: {userListSummary.savingsUsers}</p>
       </section>
       <ul className="userList">
         {userList.map((user) => (

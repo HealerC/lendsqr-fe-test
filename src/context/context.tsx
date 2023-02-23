@@ -30,7 +30,16 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const setUsers = (userList: UserDetails[]) => {
-    dispatch({ type: Actions.SET_USERS, payload: userList });
+    const userListSummary = {
+      totalUsers: userList.length,
+      activeUsers: Math.floor(Math.random() * userList.length),
+      loanUsers: Math.floor(Math.random() * userList.length),
+      savingsUsers: Math.floor(Math.random() * userList.length),
+    };
+    dispatch({
+      type: Actions.SET_USERS,
+      payload: { userList, userListSummary },
+    });
   };
 
   const blacklistUser = (userId: string) => {
