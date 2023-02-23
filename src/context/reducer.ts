@@ -28,6 +28,9 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
       });
       return { ...state, userList };
     }
+    case Actions.TOGGLE_MOBILE_DRAWER: {
+      return { ...state, isMobileDrawerOpen: !state.isMobileDrawerOpen };
+    }
     default:
       throw new Error();
   }

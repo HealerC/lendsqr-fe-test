@@ -13,6 +13,7 @@ interface AppContext extends AppState {
   setUsers: (userList: UserDetails[]) => void;
   blacklistUser: (userId: string) => void;
   activateUser: (userId: string) => void;
+  toggleMobileDrawer: () => void;
 }
 
 const AppContext = createContext<AppContext | undefined>(undefined);
@@ -40,9 +41,21 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: Actions.ACTIVATE_USER, payload: userId });
   };
 
+  const toggleMobileDrawer = () => {
+    dispatch({ type: Actions.TOGGLE_MOBILE_DRAWER });
+  };
+
   return (
     <AppContext.Provider
-      value={{ ...state, login, logout, setUsers, blacklistUser, activateUser }}
+      value={{
+        ...state,
+        login,
+        logout,
+        setUsers,
+        blacklistUser,
+        activateUser,
+        toggleMobileDrawer,
+      }}
     >
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </AppContext.Provider>
