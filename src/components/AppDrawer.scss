@@ -1,0 +1,26 @@
+@use "../styles/variables";
+.temporary-drawer {
+  display: block;
+
+  & .MuiDrawer-paper {
+    box-sizing: border-box;
+    width: variables.$drawerWidth;
+  }
+}
+.permanent-drawer {
+  @extend .temporary-drawer;
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .app-drawer {
+    width: variables.$drawerWidth;
+    // flex-shrink: 0;
+  }
+  .temporary-drawer {
+    display: none;
+  }
+  .permanent-drawer {
+    display: block;
+  }
+}
