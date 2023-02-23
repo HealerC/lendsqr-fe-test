@@ -4,10 +4,14 @@ import MenuBar from "../../components/MenuBar";
 import AppDrawer from "../../components/AppDrawer";
 export default function SharedLayout() {
   return (
-    <div className="dashboard">
+    <div className="app-dashboard">
       <MenuBar />
-      <AppDrawer />
-      <Outlet />
+      <div className="drawer-and-app">
+        <AppDrawer />
+        <div className="app-wrapper">
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 }
