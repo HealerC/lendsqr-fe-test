@@ -1,0 +1,20 @@
+$drawerWidth: 283px;
+
+.MuiListItemButton-root .MuiListItemIcon-root {
+  min-width: 40px;
+}
+
+.MuiListItemIcon-root.expand-more-icon {
+  img {
+    transition: transform 300ms;
+  }
+  &.expanded {
+    img {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.collapsible-items-wrapper {
+  margin-left: 1rem;
+}

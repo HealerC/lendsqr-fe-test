@@ -22,14 +22,14 @@ import clipboardListIcon from "../assets/icons/clipboard-list.svg";
 const getIcon = (imgPath: string): React.ReactNode => {
   return <img src={imgPath} className="app-drawer-icon" />;
 };
-interface DrawerItemBase {
+export interface DrawerItemBase {
   id: string;
   icon: React.ReactNode;
   text: string;
   route?: string;
 }
-interface DrawerItemDetails extends DrawerItemBase {
-  details?: DrawerItemBase[] | null;
+export interface DrawerItemDetails extends DrawerItemBase {
+  details?: DrawerItemBase[];
 }
 export const drawer: DrawerItemDetails[] = [
   {
