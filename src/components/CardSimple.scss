@@ -1,0 +1,18 @@
+.summary-card {
+  box-sizing: border-box;
+  padding: 20px 30px 30px 30px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  flex-basis: 200px;
+  height: 160px;
+  //   width: 200px;
+  //   max-width: 200px;
+  //   flex-grow: 1;
+  //   flex-shrink: 0;
+
+  // Figma
+  background: #ffffff;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+}
