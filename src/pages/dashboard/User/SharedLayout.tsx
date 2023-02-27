@@ -40,7 +40,9 @@ function useRouteMatch(patterns: readonly string[]) {
 export default function User() {
   const { userId } = useParams();
   const routeMatch = useRouteMatch(userRoutes);
-  const currentTabRoutePattern = routeMatch?.pattern.path;
+  const currentTabRoutePattern =
+    routeMatch?.pattern.path || "/users/:userId/general-details";
+  console.log(currentTabRoutePattern);
   const { userList, activateUser, blacklistUser } = useAppContext();
   const user = userList.find((person) => person.id === userId);
   return (
