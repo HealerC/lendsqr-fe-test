@@ -1,4 +1,12 @@
-import { useParams, Link, Outlet } from "react-router-dom";
+import {
+  useParams,
+  useLocation,
+  Link,
+  Outlet,
+  matchPath,
+} from "react-router-dom";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 import { useAppContext } from "../../../context/context";
 import history from "history/browser";
 import Button from "@mui/material/Button";
@@ -6,8 +14,33 @@ import backIcon from "../../../assets/icons/back.svg";
 import "./SharedLayout.scss";
 import Stars from "../../../components/Stars";
 
+const userRoutes = [
+  "/users/:userId/general-details",
+  "/users/:userId/documents",
+  "/users/:userId/bank-details",
+  "/users/:userId/loans",
+  "/users/:userId/savings",
+  "/users/:userId/app-and-system",
+];
+
+function useRouteMatch(patterns: readonly string[]) {
+  const { pathname } = useLocation();
+
+  for (let i = 0; i < patterns.length; i += 1) {
+    const pattern = patterns[i];
+    const possibleMatch = matchPath(pattern, pathname);
+    if (possibleMatch !== null) {
+      return possibleMatch;
+    }
+  }
+
+  return null;
+}
+
 export default function User() {
   const { userId } = useParams();
+  const routeMatch = useRouteMatch(userRoutes);
+  const currentTabRoutePattern = routeMatch?.pattern.path;
   const { userList, activateUser, blacklistUser } = useAppContext();
   const user = userList.find((person) => person.id === userId);
   return (
@@ -53,14 +86,44 @@ export default function User() {
           </div>
         </section>
       </header>
-      <section className="otherDetails">
-        <Link to={`/users/${userId}/general-details`}>General Details</Link>
-        <Link to={`/users/${userId}/documents`}>Documents</Link>
-        <Link to={`/users/${userId}/bank-details`}>Bank Details</Link>
-        <Link to={`/users/${userId}/loans`}>Loans</Link>
-        <Link to={`/users/${userId}/savings`}>Savings</Link>
-        <Link to={`/users/${userId}/app-and-system`}>App and System</Link>
-      </section>
+      <Tabs value={currentTabRoutePattern}>
+        <Tab
+          component={Link}
+          to="general-details"
+          value="/users/:userId/general-details"
+          label="General Details"
+        />
+        <Tab
+          component={Link}
+          to="documents"
+          value="/users/:userId/documents"
+          label="Documents"
+        />
+        <Tab
+          component={Link}
+          to="bank-details"
+          value="/users/:userId/bank-details"
+          label="Bank Details"
+        />
+        <Tab
+          component={Link}
+          to="loans"
+          value="/users/:userId/loans"
+          label="Loans"
+        />
+        <Tab
+          component={Link}
+          to="savings"
+          value="/users/:userId/savings"
+          label="Savings"
+        />
+        <Tab
+          component={Link}
+          to={`/users/${userId}/app-and-system`}
+          value="/users/:userId/app-and-system"
+          label="App and System"
+        />
+      </Tabs>
       <div className="user-details-container">
         <Outlet />
       </div>
