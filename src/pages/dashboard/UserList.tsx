@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import CardSimple from "../../components/CardSimple";
 import { summaryContent } from "../../utils/summary-content";
 import { UserDetailsSummary } from "../../context/interfaces";
+import AppTable from "../../components/AppTable";
 import "./UserList.scss";
 
 const apiUrl =
@@ -42,22 +43,7 @@ export default function UserList() {
     <div>
       <h1>Users</h1>
       <section className="user-summary">{getCards()}</section>
-      <ul className="userList">
-        {userList.map((user) => (
-          <li key={user.id}>
-            {user.orgName} -- {user.userName} -- {user.email} --{" "}
-            {user.phoneNumber} --
-            {user.createdAt.getDate()} -- {user.status}
-            <button onClick={() => navigate(`/users/${user.id}`)}>
-              View details
-            </button>
-            <button onClick={() => blacklistUser(user.id)}>
-              Blacklist user
-            </button>
-            <button onClick={() => activateUser(user.id)}>Activate user</button>
-          </li>
-        ))}
-      </ul>
+      <AppTable />
     </div>
   );
 }
