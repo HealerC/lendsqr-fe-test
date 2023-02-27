@@ -33,6 +33,8 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
     case Actions.TOGGLE_MOBILE_DRAWER: {
       return { ...state, isMobileDrawerOpen: !state.isMobileDrawerOpen };
     }
+    case Actions.TOGGLE_FILTER_MODAL:
+      return { ...state, isFilterModalOpen: !state.isFilterModalOpen };
     default:
       throw new Error();
   }

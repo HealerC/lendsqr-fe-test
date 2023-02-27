@@ -14,6 +14,7 @@ interface AppContext extends AppState {
   blacklistUser: (userId: string) => void;
   activateUser: (userId: string) => void;
   toggleMobileDrawer: () => void;
+  toggleFilterModal: () => void;
 }
 
 const AppContext = createContext<AppContext | undefined>(undefined);
@@ -54,6 +55,10 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: Actions.TOGGLE_MOBILE_DRAWER });
   };
 
+  const toggleFilterModal = () => {
+    dispatch({ type: Actions.TOGGLE_FILTER_MODAL });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -64,6 +69,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         blacklistUser,
         activateUser,
         toggleMobileDrawer,
+        toggleFilterModal,
       }}
     >
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
