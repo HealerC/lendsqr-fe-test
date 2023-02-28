@@ -8,7 +8,6 @@ import {
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { useAppContext } from "../../../context/context";
-import history from "history/browser";
 import Button from "@mui/material/Button";
 import backIcon from "../../../assets/icons/back.svg";
 import "./SharedLayout.scss";
@@ -47,7 +46,7 @@ export default function User() {
   const user = userList.find((person) => person.id === userId);
   return (
     <div>
-      <Button onClick={() => history.back()} startIcon={<img src={backIcon} />}>
+      <Button component={Link} to=".." startIcon={<img src={backIcon} />}>
         Back to users
       </Button>
       <section className="header-nav">
