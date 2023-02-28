@@ -1,3 +1,4 @@
+import { NavLink, NavLinkProps, useMatch } from "react-router-dom";
 import React from "react";
 import { ListItemText } from "@mui/material";
 import List from "@mui/material/List";
@@ -10,13 +11,36 @@ import expandMoreIcon from "../assets/icons/expand-more.svg";
 import { DrawerItemBase, DrawerItemDetails } from "../utils/app-drawer-content";
 import "./DrawerItemsComponent.scss";
 
-function Item({ id, icon, text }: DrawerItemBase) {
+const Link = React.forwardRef<HTMLAnchorElement, NavLinkProps>(function Link(
+  itemProps,
+  ref
+) {
+  return <NavLink ref={ref} {...itemProps} role={undefined} />;
+});
+
+type ListItemButtonLinkProps = {
+  icon?: React.ReactNode;
+  primary: string;
+  to: string;
+};
+function ListItemButtonLink({ icon, primary, to }: ListItemButtonLinkProps) {
+  const match = useMatch("/" + to + "/*");
+  return (
+    <ListItemButton
+      component={Link}
+      to={to}
+      sx={{ color: Boolean(match) ? "Yellow" : "Green" }}
+    >
+      {icon && <ListItemIcon>{icon}</ListItemIcon>}
+      <ListItemText primary={primary} />
+    </ListItemButton>
+  );
+}
+
+function Item({ id, icon, text, route = "" }: DrawerItemBase) {
   return (
     <ListItem key={id} disablePadding>
-      <ListItemButton>
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText primary={text} />
-      </ListItemButton>
+      <ListItemButtonLink icon={icon} primary={text} to={route} />
     </ListItem>
   );
 }
