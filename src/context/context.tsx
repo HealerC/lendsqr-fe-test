@@ -4,8 +4,16 @@ import { reducer } from "./reducer";
 import { UserDetails } from "./interfaces";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../utils/app-theme";
+import { SelectChangeEvent } from "@mui/material";
+import { Dayjs } from "dayjs";
 
 type AppState = typeof initialState;
+
+type DayjsEvent = Dayjs | null;
+type InputEvents =
+  | SelectChangeEvent<string>
+  | React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  | DayjsEvent;
 
 interface AppContext extends AppState {
   login: () => void;
@@ -16,6 +24,7 @@ interface AppContext extends AppState {
   toggleMobileDrawer: () => void;
   toggleFilterModal: () => void;
   sortUsers: (by: keyof UserDetails) => void;
+  handleFilter: (event: InputEvents) => void;
 }
 
 const AppContext = createContext<AppContext | undefined>(undefined);
@@ -72,6 +81,22 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: Actions.SORT_USERS, payload: { by, desc: true } });
   };
 
+  const handleFilter = (event: InputEvents) => {
+    const prevFilter = state.filter.values;
+    if (event === null || "date" in event) {
+      dispatch({
+        type: Actions.FILTER_USERS,
+        payload: { ...prevFilter, createdAt: event },
+      });
+    } else {
+      const { name, value } = event.target;
+      dispatch({
+        type: Actions.FILTER_USERS,
+        payload: { ...prevFilter, [name]: value },
+      });
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -84,6 +109,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         toggleMobileDrawer,
         toggleFilterModal,
         sortUsers,
+        handleFilter,
       }}
     >
       <ThemeProvider theme={theme}>{children}</ThemeProvider>

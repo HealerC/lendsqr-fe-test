@@ -27,15 +27,15 @@ import LimiterComponent from "./LimiterComponent";
 import TablePagination from "./TablePagination";
 import "./AppTable.scss";
 
-interface Data {
-  orgName: string;
-  userName: string;
-  email: string;
-  phoneNumber: string;
-  createdAt: Date;
-  status: Status;
-  id: string;
-}
+type Data = Omit<
+  UserDetails,
+  | "accountBalance"
+  | "accountNumber"
+  | "profile"
+  | "guarantor"
+  | "socials"
+  | "education"
+>;
 type TableHeader = [string, keyof Data];
 const tableHeaderList: TableHeader[] = [
   ["organization", "orgName"],
@@ -58,7 +58,7 @@ function getTableData(list: UserDetails[]): Data[] {
   }));
   return rows;
 }
-function getDateString(date: Date): string {
+function getDateString(dateString: string): string {
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "short",
@@ -67,7 +67,7 @@ function getDateString(date: Date): string {
     minute: "2-digit",
     hour12: true,
   };
-  return date.toLocaleDateString(undefined, options);
+  return new Date(dateString).toLocaleDateString(undefined, options);
 }
 
 export default function BasicTable() {

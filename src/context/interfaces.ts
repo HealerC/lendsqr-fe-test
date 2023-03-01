@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs";
+
 interface Profile {
   firstName: string;
   lastName: string;
@@ -44,13 +46,26 @@ export interface UserDetailsAPI {
   socials: Socials;
   education: Education;
 }
-export interface UserDetails extends Omit<UserDetailsAPI, "createdAt"> {
+export interface UserDetails extends UserDetailsAPI {
   status: Status;
-  createdAt: Date;
 }
 export interface UserDetailsSummary {
   totalUsers: number;
   activeUsers: number;
   loanUsers: number;
   savingsUsers: number;
+}
+export interface UserDetailsFilter
+  extends Omit<
+    UserDetails,
+    | "id"
+    | "accountBalance"
+    | "accountNumber"
+    | "profile"
+    | "guarantor"
+    | "socials"
+    | "education"
+    | "createdAt"
+  > {
+  createdAt: Dayjs | null;
 }

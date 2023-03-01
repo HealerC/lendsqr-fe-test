@@ -38,6 +38,8 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
 
     case Actions.SORT_USERS:
       return { ...state, sort: action.payload };
+    case Actions.FILTER_USERS:
+      return { ...state, filter: { ...state.filter, values: action.payload } };
     default:
       throw new Error();
   }

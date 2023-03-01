@@ -11,6 +11,9 @@ import InputSimple from "./input/InputSimple";
 import { useState } from "react";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useAppContext } from "../context/context";
+import { UserDetails } from "../context/interfaces";
+import { Status } from "../context/interfaces";
 
 // import TextField from "@mui/material/TextField";
 // import InputLabel from "@mui/material/InputLabel";
@@ -27,14 +30,27 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 // import IconButton from "@mui/material/IconButton";
 
 // import OutlinedInput from "@mui/material/OutlinedInput";
-export default function FilterModalComponents() {
-  const [age, setAge] = useState("");
-  const [text, setText] = useState<string>("");
-  const [value, setValue] = useState<Dayjs | null>(null);
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
-  };
+function getOrgNameList(userList: UserDetails[]) {
+  let nonDuplicatedOrgSet = new Set(userList.map((user) => user.orgName));
+  const orgList = Array.from(nonDuplicatedOrgSet, (orgName) => ({
+    value: orgName,
+    component: orgName,
+  }));
+  return orgList;
+}
+
+function getStatusList(): {
+  value: Status;
+  component: string;
+}[] {
+  return ["blacklisted", "pending", "inactive", "active"].map((item) => ({
+    value: item as Status,
+    component: item,
+  }));
+}
+export default function FilterModalComponents() {
+  const { filter, userList, handleFilter } = useAppContext();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -43,41 +59,31 @@ export default function FilterModalComponents() {
   return (
     <form onSubmit={handleSubmit}>
       <SelectSimple
-        name="organization"
+        name="orgName"
         label="Organization"
-        value={age}
-        items={[
-          { value: 10, component: "Ten" },
-          { value: 20, component: "Twenty" },
-          { value: 30, component: "Thirty" },
-        ]}
-        handleChange={handleChange}
+        value={filter.values.orgName}
+        items={getOrgNameList(userList)}
+        handleChange={handleFilter}
       />
       <InputSimple
-        name="text"
+        name="userName"
         label="Username"
         autoComplete="username"
-        value={text}
-        handleChange={(event) => {
-          setText(event.target.value);
-        }}
+        value={filter.values.userName}
+        handleChange={handleFilter}
       />
       <InputSimple
         name="email"
         label="Email"
         autoComplete="email"
-        value={text}
-        handleChange={(event) => {
-          setText(event.target.value);
-        }}
+        value={filter.values.email}
+        handleChange={handleFilter}
       />
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
-          value={value}
+          value={filter.values.createdAt}
           label="Date"
-          onChange={(newValue) => {
-            setValue(newValue);
-          }}
+          onChange={handleFilter}
           renderInput={(params) => (
             <TextField
               {...{
@@ -105,22 +111,16 @@ export default function FilterModalComponents() {
         type="tel"
         autoComplete="tel"
         label="Telephone"
-        name="telephone"
-        value={text}
-        handleChange={(event) => {
-          setText(event.target.value);
-        }}
+        name="phoneNumber"
+        value={filter.values.phoneNumber}
+        handleChange={handleFilter}
       />
       <SelectSimple
         name="status"
         label="Status"
-        value={age}
-        items={[
-          { value: 10, component: "Ten" },
-          { value: 20, component: "Twenty" },
-          { value: 30, component: "Thirty" },
-        ]}
-        handleChange={handleChange}
+        value={filter.values.status}
+        items={getStatusList()}
+        handleChange={handleFilter}
       />
       <Button variant="outlined" color="secondary" type="reset">
         Reset
