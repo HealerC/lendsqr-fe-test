@@ -74,6 +74,7 @@ function ItemWithDetails({ id, icon, text, details }: DrawerItemDetails) {
               id={itemDetails.id}
               icon={itemDetails.icon}
               text={itemDetails.text}
+              route={itemDetails.route}
             />
           ))}
         </div>
