@@ -22,11 +22,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-// import FilterModal from "./TestModalComponents";
 import FilterModal from "./FilterModal";
 import LimiterComponent from "./LimiterComponent";
 import TablePagination from "./TablePagination";
+import "./AppTable.scss";
 
 interface Data {
   orgName: string;
@@ -37,23 +36,14 @@ interface Data {
   status: Status;
   id: string;
 }
-
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
+type TableHeader = [string, keyof Data];
+const tableHeaderList: TableHeader[] = [
+  ["organization", "orgName"],
+  ["username", "userName"],
+  ["email", "email"],
+  ["phonenumber", "phoneNumber"],
+  ["date joined", "createdAt"],
+  ["status", "status"],
 ];
 
 function getTableData(list: UserDetails[]): Data[] {
@@ -81,8 +71,14 @@ function getDateString(date: Date): string {
 }
 
 export default function BasicTable() {
-  const { userList, blacklistUser, activateUser, toggleFilterModal } =
-    useAppContext();
+  const {
+    userList,
+    blacklistUser,
+    activateUser,
+    toggleFilterModal,
+    sortUsers,
+    sort,
+  } = useAppContext();
   const navigate = useNavigate();
   const rows = getTableData(userList);
 
@@ -111,42 +107,23 @@ export default function BasicTable() {
         <Table sx={{ minWidth: 650 }}>
           <TableHead>
             <TableRow>
-              <TableCell>
-                organization{" "}
-                <IconButton>
-                  <img src={sortIcon} />
-                </IconButton>
-              </TableCell>
-              <TableCell>
-                username
-                <IconButton>
-                  <img src={sortIcon} />
-                </IconButton>
-              </TableCell>
-              <TableCell>
-                email
-                <IconButton>
-                  <img src={sortIcon} />
-                </IconButton>
-              </TableCell>
-              <TableCell>
-                phone number
-                <IconButton>
-                  <img src={sortIcon} />
-                </IconButton>
-              </TableCell>
-              <TableCell>
-                date joined
-                <IconButton>
-                  <img src={sortIcon} />
-                </IconButton>
-              </TableCell>
-              <TableCell>
-                status
-                <IconButton>
-                  <img src={sortIcon} />
-                </IconButton>
-              </TableCell>
+              {tableHeaderList.map((thItem) => (
+                <TableCell key={thItem + "x1"}>
+                  {thItem[0]}
+                  <IconButton
+                    className={
+                      sort.by === thItem[1] && sort.desc
+                        ? "sort-icon sorted-desc"
+                        : sort.by === thItem[1] && !sort.desc
+                        ? "sort-icon sorted-asc"
+                        : "sort-icon"
+                    }
+                    onClick={() => sortUsers(thItem[1])}
+                  >
+                    <img src={sortIcon} />
+                  </IconButton>
+                </TableCell>
+              ))}
               <TableCell></TableCell>
             </TableRow>
           </TableHead>

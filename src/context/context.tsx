@@ -15,6 +15,7 @@ interface AppContext extends AppState {
   activateUser: (userId: string) => void;
   toggleMobileDrawer: () => void;
   toggleFilterModal: () => void;
+  sortUsers: (by: keyof UserDetails) => void;
 }
 
 const AppContext = createContext<AppContext | undefined>(undefined);
@@ -59,6 +60,18 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: Actions.TOGGLE_FILTER_MODAL });
   };
 
+  const sortUsers = (by: keyof UserDetails) => {
+    // Basically if the `by` in state and the incoming `by` is the same
+    // switch the sorting order, otherwise the incoming `by` replaces
+    // the one in state and the order is default descending true
+    const { by: stateBy, desc: stateDesc } = state.sort;
+    if (by === stateBy) {
+      dispatch({ type: Actions.SORT_USERS, payload: { by, desc: !stateDesc } });
+      return;
+    }
+    dispatch({ type: Actions.SORT_USERS, payload: { by, desc: true } });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -70,6 +83,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         activateUser,
         toggleMobileDrawer,
         toggleFilterModal,
+        sortUsers,
       }}
     >
       <ThemeProvider theme={theme}>{children}</ThemeProvider>

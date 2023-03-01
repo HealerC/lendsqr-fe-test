@@ -35,6 +35,9 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
     }
     case Actions.TOGGLE_FILTER_MODAL:
       return { ...state, isFilterModalOpen: !state.isFilterModalOpen };
+
+    case Actions.SORT_USERS:
+      return { ...state, sort: action.payload };
     default:
       throw new Error();
   }

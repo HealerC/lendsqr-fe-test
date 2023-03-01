@@ -1,0 +1,15 @@
+.sort-icon {
+  opacity: 0.5;
+  img {
+    transition: transform 300ms;
+  }
+  &.sorted-desc {
+    opacity: 1;
+  }
+  &.sorted-asc {
+    opacity: 1;
+    img {
+      transform: rotate(180deg);
+    }
+  }
+}

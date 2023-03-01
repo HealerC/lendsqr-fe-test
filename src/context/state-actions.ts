@@ -7,6 +7,10 @@ export const initialState = {
   isFilterModalOpen: false,
   userList: [] as UserDetails[],
   userListSummary: {} as UserDetailsSummary,
+  sort: {
+    by: "" as keyof UserDetails,
+    desc: true,
+  },
 };
 
 export const Actions = {
@@ -17,6 +21,7 @@ export const Actions = {
   ACTIVATE_USER: "ACTIVATE_USER",
   TOGGLE_MOBILE_DRAWER: "TOGGLE_MOBILE_DRAWER",
   TOGGLE_FILTER_MODAL: "TOGGLE_FILTER_MODAL",
+  SORT_USERS: "SORT_USERS",
 } as const;
 
 export type ActionKeys = typeof Actions[keyof typeof Actions];
@@ -31,4 +36,8 @@ export type ACTIONTYPE =
   | { type: typeof Actions.BLACK_LIST_USER; payload: string }
   | { type: typeof Actions.ACTIVATE_USER; payload: string }
   | { type: typeof Actions.TOGGLE_MOBILE_DRAWER }
-  | { type: typeof Actions.TOGGLE_FILTER_MODAL };
+  | { type: typeof Actions.TOGGLE_FILTER_MODAL }
+  | {
+      type: typeof Actions.SORT_USERS;
+      payload: { by: keyof UserDetails; desc: boolean };
+    };
