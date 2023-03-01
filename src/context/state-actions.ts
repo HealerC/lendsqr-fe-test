@@ -41,6 +41,7 @@ export const Actions = {
   TOGGLE_FILTER_MODAL: "TOGGLE_FILTER_MODAL",
   SORT_USERS: "SORT_USERS",
   FILTER_USERS: "FILTER_USERS",
+  CLEAR_FILTER_USERS: "CLEAR_FILTER_USERS",
 } as const;
 
 export type ActionKeys = typeof Actions[keyof typeof Actions];
@@ -63,4 +64,5 @@ export type ACTIONTYPE =
   | {
       type: typeof Actions.FILTER_USERS;
       payload: { [key in keyof UserDetailsFilter]: UserDetailsFilter[key] };
-    };
+    }
+  | { type: typeof Actions.CLEAR_FILTER_USERS };

@@ -25,6 +25,7 @@ interface AppContext extends AppState {
   toggleFilterModal: () => void;
   sortUsers: (by: keyof UserDetails) => void;
   handleFilter: (event: InputEvents) => void;
+  clearFilter: () => void;
 }
 
 const AppContext = createContext<AppContext | undefined>(undefined);
@@ -97,6 +98,10 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const clearFilter = () => {
+    dispatch({ type: Actions.CLEAR_FILTER_USERS });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -110,6 +115,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         toggleFilterModal,
         sortUsers,
         handleFilter,
+        clearFilter,
       }}
     >
       <ThemeProvider theme={theme}>{children}</ThemeProvider>

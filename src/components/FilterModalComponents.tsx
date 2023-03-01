@@ -50,7 +50,7 @@ function getStatusList(): {
   }));
 }
 export default function FilterModalComponents() {
-  const { filter, userList, handleFilter } = useAppContext();
+  const { filter, userList, handleFilter, clearFilter } = useAppContext();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -122,7 +122,12 @@ export default function FilterModalComponents() {
         items={getStatusList()}
         handleChange={handleFilter}
       />
-      <Button variant="outlined" color="secondary" type="reset">
+      <Button
+        variant="outlined"
+        color="secondary"
+        type="reset"
+        onClick={clearFilter}
+      >
         Reset
       </Button>
       <Button variant="contained" type="submit">
