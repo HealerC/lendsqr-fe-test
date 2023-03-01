@@ -40,6 +40,7 @@ function App() {
               <Route path="app-and-system" element={<AppAndSystem />} />
             </Route>
           </Route>
+          <Route path="*" element={<Home />} />
         </Route>
       </Routes>
     </BrowserRouter>
