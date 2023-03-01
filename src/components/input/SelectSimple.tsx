@@ -40,6 +40,7 @@ export default function SelectSimple({
       <Select
         labelId={`${name}-label`}
         id={name}
+        name={name}
         value={value}
         onChange={handleChange}
         IconComponent={KeyboardArrowDownRoundedIcon}
