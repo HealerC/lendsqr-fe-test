@@ -60,6 +60,14 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
         ...state,
         filter: { ...state.filter, result: action.payload.result },
       };
+    case Actions.SET_USERS_PER_PAGE:
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          usersPerPage: action.payload.usersPerPage,
+        },
+      };
     default:
       throw new Error();
   }

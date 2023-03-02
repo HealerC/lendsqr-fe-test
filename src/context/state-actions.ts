@@ -31,6 +31,11 @@ export const initialState = {
     result: [] as UserDetails[],
     values: initialFilterValues,
   },
+  pagination: {
+    page: 1,
+    usersPerPage: 10,
+    totalPageCount: 0,
+  },
 };
 
 export const Actions = {
@@ -45,6 +50,7 @@ export const Actions = {
   FILTER_USERS: "FILTER_USERS",
   CLEAR_FILTER_USERS: "CLEAR_FILTER_USERS",
   SET_FILTER_USERS: "SET_FILTER_USERS",
+  SET_USERS_PER_PAGE: "SET_USERS_PER_PAGE",
 } as const;
 
 export type ActionKeys = typeof Actions[keyof typeof Actions];
@@ -73,4 +79,8 @@ export type ACTIONTYPE =
   | {
       type: typeof Actions.SET_FILTER_USERS;
       payload: { result: UserDetails[] };
+    }
+  | {
+      type: typeof Actions.SET_USERS_PER_PAGE;
+      payload: { usersPerPage: number };
     };

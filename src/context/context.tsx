@@ -26,6 +26,7 @@ interface AppContext extends AppState {
   sortUsers: (by: keyof UserDetails) => void;
   handleFilter: (event: InputEvents) => void;
   clearFilter: () => void;
+  setUsersPerPage: (event: SelectChangeEvent<number>) => void;
 }
 
 const AppContext = createContext<AppContext | undefined>(undefined);
@@ -152,6 +153,12 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: Actions.CLEAR_FILTER_USERS });
   };
 
+  const setUsersPerPage = (event: SelectChangeEvent<number>): void => {
+    const { value } = event.target;
+    const usersPerPage = typeof value === "string" ? parseInt(value) : value;
+    dispatch({ type: Actions.SET_USERS_PER_PAGE, payload: { usersPerPage } });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -166,6 +173,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         sortUsers,
         handleFilter,
         clearFilter,
+        setUsersPerPage,
       }}
     >
       <ThemeProvider theme={theme}>{children}</ThemeProvider>

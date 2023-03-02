@@ -3,8 +3,13 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import KeyboardArrowDownRounded from "@mui/icons-material/KeyboardArrowDownRounded";
 import MenuItem from "@mui/material/MenuItem";
+import { useAppContext } from "../context/context";
 
 export default function LimiterComponent() {
+  const {
+    pagination: { usersPerPage },
+    setUsersPerPage,
+  } = useAppContext();
   return (
     <FormControl sx={{ flexDirection: "row", alignItems: "center" }}>
       <InputLabel
@@ -21,8 +26,8 @@ export default function LimiterComponent() {
       <Select
         labelId="limiter-label"
         id="limiter"
-        value={5}
-        onChange={() => console.log("hello")}
+        value={usersPerPage}
+        onChange={(event) => setUsersPerPage(event)}
         IconComponent={KeyboardArrowDownRounded}
       >
         <MenuItem value={5}>5</MenuItem>
