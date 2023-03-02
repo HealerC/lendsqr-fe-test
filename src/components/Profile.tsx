@@ -34,10 +34,14 @@ export default function Profile({
 
   return (
     <>
-      <Button className="profile" onClick={handleOpen}>
+      <Button
+        className="profile"
+        onClick={handleOpen}
+        endIcon={<img src={arrowDownIcon} />}
+      >
         <Avatar alt={username} src={profilePicturePath} />
         <p>{username}</p>
-        <img src={arrowDownIcon} />
+        {/* <img src={arrowDownIcon} /> */}
       </Button>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         {menuProps.map((item, index) => (

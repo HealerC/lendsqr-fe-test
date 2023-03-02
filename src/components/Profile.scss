@@ -13,4 +13,15 @@
     color: black;
   }
   border-radius: 10px;
+  p {
+    display: none;
+  }
+}
+
+@media (min-width: 860px) {
+  .profile {
+    p {
+      display: initial;
+    }
+  }
 }

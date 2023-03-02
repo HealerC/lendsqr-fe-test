@@ -1,5 +1,7 @@
+$search-bar-width: 400px;
+$search-button-width: 56px;
 .search-bar {
-  display: flex;
+  display: none;
 }
 .search-text-field {
   height: 40px;
@@ -28,10 +30,23 @@
   }
 }
 .MuiButtonBase-root.search-button {
+  width: $search-button-width;
   height: 40px;
   margin: 0;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   box-shadow: none;
   color: white;
+}
+
+@media (min-width: 800px) {
+  .search-bar {
+    display: flex;
+  }
+}
+
+@media (min-width: 1100px) {
+  .search-text-field {
+    width: $search-bar-width - $search-button-width;
+  }
 }

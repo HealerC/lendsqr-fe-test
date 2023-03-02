@@ -21,7 +21,7 @@ export default function MenuBar() {
         >
           <img src={hamburgerIcon} className="hamburger-icon" />
         </IconButton>
-        <img src={Logo} />
+        <img src={Logo} className="app-logo-menubar" />
       </div>
       <main>
         <SearchBar value="dorime" handleChange={() => console.log("change")} />

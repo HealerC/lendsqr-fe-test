@@ -3,6 +3,13 @@
 .head-logos {
   display: flex;
   align-items: center;
+
+  .app-logo-menubar {
+    width: 140px;
+    height: auto;
+    cursor: pointer;
+  }
+
   .hamburger-icon {
     width: 24px;
     height: auto;
@@ -15,16 +22,19 @@
   align-items: center;
   background-color: white;
   z-index: 9999;
-  // justify-content: space-between;
+  justify-content: space-between;
 
   main {
     margin-left: 10rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-grow: 1;
+    // flex-grow: 1;
     > div {
       margin-right: 2rem;
+    }
+    a {
+      display: none;
     }
   }
 }
@@ -41,4 +51,23 @@
   //   width: calc(100% - variables.$drawerWidth);
   //   margin-left: variables.$drawerWidth;
   // }
+}
+
+@media (min-width: 800px) {
+  .MuiPaper-root.MuiAppBar-root.menu-bar {
+    justify-content: initial;
+    main {
+      flex-grow: 1;
+    }
+  }
+}
+
+@media (min-width: 950px) {
+  .MuiPaper-root.MuiAppBar-root.menu-bar {
+    main {
+      a {
+        display: initial;
+      }
+    }
+  }
 }
