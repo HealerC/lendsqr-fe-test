@@ -23,7 +23,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import FilterModal from "./FilterModal";
-import LimiterComponent from "./LimiterComponent";
+import TableLimiterComponent from "./TableLimiterComponent";
 import TablePagination from "./TablePagination";
 import "./AppTable.scss";
 
@@ -79,10 +79,12 @@ export default function BasicTable() {
     sortUsers,
     sort,
     filter: { result },
+    pagination: { page, usersPerPage },
   } = useAppContext();
   const navigate = useNavigate();
   let displayedResult = sort.by ? sorter(result, sort.by, sort.desc) : result;
-  const rows = getTableData(displayedResult);
+  let splicedResult = limitResultCount(displayedResult, page, usersPerPage);
+  const rows = getTableData(splicedResult);
 
   const [anchorData, setAnchorData] = useState<null | {
     element: HTMLElement;
@@ -164,7 +166,7 @@ export default function BasicTable() {
         </Table>
         <FilterModal />
         <Toolbar sx={{ justifyContent: "space-between" }}>
-          <LimiterComponent />
+          <TableLimiterComponent />
           <TablePagination />
         </Toolbar>
       </TableContainer>
@@ -266,4 +268,16 @@ function sorter(
     default:
       return list;
   }
+}
+
+function limitResultCount(
+  list: UserDetails[],
+  page: number,
+  itemsPerPage: number
+) {
+  let start = page * itemsPerPage - itemsPerPage;
+  let tempEnd = start + itemsPerPage;
+  let end = tempEnd >= list.length ? list.length + 1 : tempEnd;
+
+  return list.slice(start, end);
 }

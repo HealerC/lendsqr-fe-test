@@ -76,6 +76,14 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
           page: action.payload.page,
         },
       };
+    case Actions.SET_TOTAL_PAGE_COUNT:
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          totalPageCount: action.payload.totalPageCount,
+        },
+      };
     default:
       throw new Error();
   }

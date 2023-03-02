@@ -76,6 +76,16 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [state.filter.values]);
 
+  useEffect(() => {
+    const totalUsers = state.filter.result.length;
+    const { usersPerPage } = state.pagination;
+    const totalPageCount = Math.ceil(totalUsers / usersPerPage);
+    dispatch({
+      type: Actions.SET_TOTAL_PAGE_COUNT,
+      payload: { totalPageCount },
+    });
+  }, [state.filter.result, state.pagination.usersPerPage]);
+
   const login = () => {
     dispatch({ type: Actions.LOGIN });
   };
