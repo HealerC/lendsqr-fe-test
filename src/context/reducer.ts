@@ -8,7 +8,12 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
       return { ...state, loggedIn: false };
     case Actions.SET_USERS: {
       const { userList, userListSummary } = action.payload;
-      return { ...state, userList, userListSummary };
+      return {
+        ...state,
+        userList,
+        userListSummary,
+        filter: { ...state.filter, result: userList },
+      };
     }
     case Actions.BLACK_LIST_USER: {
       const userId = action.payload;
@@ -39,11 +44,16 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
     case Actions.SORT_USERS:
       return { ...state, sort: action.payload };
     case Actions.FILTER_USERS:
-      return { ...state, filter: { ...state.filter, values: action.payload } };
+      return { ...state, filter: action.payload };
     case Actions.CLEAR_FILTER_USERS:
       return {
         ...state,
         filter: { ...state.filter, values: initialState.filter.values },
+      };
+    case Actions.SET_FILTER_USERS:
+      return {
+        ...state,
+        filter: { ...state.filter, result: action.payload.result },
       };
     default:
       throw new Error();

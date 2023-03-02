@@ -42,6 +42,7 @@ export const Actions = {
   SORT_USERS: "SORT_USERS",
   FILTER_USERS: "FILTER_USERS",
   CLEAR_FILTER_USERS: "CLEAR_FILTER_USERS",
+  SET_FILTER_USERS: "SET_FILTER_USERS",
 } as const;
 
 export type ActionKeys = typeof Actions[keyof typeof Actions];
@@ -63,6 +64,11 @@ export type ACTIONTYPE =
     }
   | {
       type: typeof Actions.FILTER_USERS;
-      payload: { [key in keyof UserDetailsFilter]: UserDetailsFilter[key] };
+      // payload: { [key in keyof UserDetailsFilter]: UserDetailsFilter[key] };
+      payload: { result: UserDetails[]; values: UserDetailsFilter };
     }
-  | { type: typeof Actions.CLEAR_FILTER_USERS };
+  | { type: typeof Actions.CLEAR_FILTER_USERS }
+  | {
+      type: typeof Actions.SET_FILTER_USERS;
+      payload: { result: UserDetails[] };
+    };

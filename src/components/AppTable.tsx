@@ -78,9 +78,10 @@ export default function BasicTable() {
     toggleFilterModal,
     sortUsers,
     sort,
+    filter: { result },
   } = useAppContext();
   const navigate = useNavigate();
-  const rows = getTableData(userList);
+  const rows = getTableData(result);
 
   const [anchorData, setAnchorData] = useState<null | {
     element: HTMLElement;

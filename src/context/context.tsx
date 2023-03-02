@@ -1,11 +1,11 @@
-import React, { useContext, createContext, useReducer } from "react";
+import React, { useContext, createContext, useReducer, useEffect } from "react";
 import { initialState, Actions } from "./state-actions";
 import { reducer } from "./reducer";
-import { UserDetails } from "./interfaces";
+import { UserDetails, UserDetailsFilter } from "./interfaces";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../utils/app-theme";
 import { SelectChangeEvent } from "@mui/material";
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
 type AppState = typeof initialState;
 
@@ -32,6 +32,47 @@ const AppContext = createContext<AppContext | undefined>(undefined);
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    let result: UserDetails[] = state.userList;
+    if (Object.values(state.filter.values).every((value) => !value)) {
+      console.log("No money in the ground");
+      dispatch({ type: Actions.SET_FILTER_USERS, payload: { result } });
+    } else {
+      const filterKeys = Object.keys(state.filter.values);
+      // console.log("filter keys", filterKeys);
+      filterKeys.forEach((key) => {
+        if (key === "createdAt") {
+          const { createdAt } = state.filter.values;
+          result = createdAt
+            ? result.filter((user) => createdAt.isSame(user.createdAt, "day"))
+            : result;
+          console.log(result);
+        } else if (key === "status") {
+          const value = state.filter.values[key];
+          result = value
+            ? result.filter(
+                (user) => user.status.toLowerCase() === value.toLowerCase()
+              )
+            : result;
+          console.log(result);
+        } else {
+          const filterValue =
+            state.filter.values[key as keyof UserDetailsFilter];
+          if (filterValue && typeof filterValue === "string") {
+            result = result.filter((user) =>
+              user[key as keyof UserDetailsFilter]
+                .toLowerCase()
+                .includes(filterValue.toLowerCase())
+            );
+          }
+          console.log(result);
+        }
+      });
+      console.log(result);
+      dispatch({ type: Actions.SET_FILTER_USERS, payload: { result } });
+    }
+  }, [state.filter.values]);
 
   const login = () => {
     dispatch({ type: Actions.LOGIN });
@@ -83,17 +124,26 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const handleFilter = (event: InputEvents) => {
-    const prevFilter = state.filter.values;
+    const prevFilterState = state.filter;
     if (event === null || "date" in event) {
+      const result = state.userList.filter((user) =>
+        event?.isSame(user.createdAt, "day")
+      );
       dispatch({
         type: Actions.FILTER_USERS,
-        payload: { ...prevFilter, createdAt: event },
+        payload: {
+          ...prevFilterState,
+          values: { ...prevFilterState.values, createdAt: event },
+        },
       });
     } else {
       const { name, value } = event.target;
       dispatch({
         type: Actions.FILTER_USERS,
-        payload: { ...prevFilter, [name]: value },
+        payload: {
+          ...prevFilterState,
+          values: { ...prevFilterState.values, [name]: value },
+        },
       });
     }
   };
