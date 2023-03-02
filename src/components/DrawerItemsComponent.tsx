@@ -10,6 +10,8 @@ import { drawerItems } from "../utils/app-drawer-content";
 import expandMoreIcon from "../assets/icons/expand-more.svg";
 import { DrawerItemBase, DrawerItemDetails } from "../utils/app-drawer-content";
 import "./DrawerItemsComponent.scss";
+import SearchBar from "./SearchBar";
+import Bell from "./Bell";
 
 const Link = React.forwardRef<HTMLAnchorElement, NavLinkProps>(function Link(
   itemProps,
@@ -101,5 +103,24 @@ export default function DrawerItemsComponent() {
     });
   };
 
-  return <div>{getItems()}</div>;
+  return (
+    <div>
+      <List className="drawer-small-screens">
+        <SearchBar value="latire" handleChange={() => {}} />
+        <Item
+          id="notifications"
+          icon={<Bell />}
+          text="Notifications"
+          route="https://www.google.com"
+        />
+        <Item
+          id="docs"
+          icon={<Bell />}
+          text="Documentation"
+          route="https://www.google.com"
+        />
+      </List>
+      {getItems()}
+    </div>
+  );
 }

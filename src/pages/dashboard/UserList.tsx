@@ -11,13 +11,15 @@ import "./UserList.scss";
 
 const apiUrl =
   "https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users";
+
+const localUrl = "http://localhost:5000/users";
 export default function UserList() {
   const { setUsers, userList, userListSummary, blacklistUser, activateUser } =
     useAppContext();
   const navigate = useNavigate();
   async function getUsers() {
     try {
-      const { data } = await axios.get<UserDetailsAPI[]>(apiUrl);
+      const { data } = await axios.get<UserDetailsAPI[]>(localUrl);
       const userList = mapUserDetailsApiToState(data);
       setUsers(userList);
     } catch (error) {
