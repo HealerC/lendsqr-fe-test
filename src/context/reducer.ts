@@ -47,7 +47,11 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
       return { ...state, isFilterModalOpen: !state.isFilterModalOpen };
 
     case Actions.SORT_USERS:
-      return { ...state, sort: action.payload };
+      return {
+        ...state,
+        sort: action.payload,
+        pagination: { ...state.pagination, page: 1 },
+      };
     case Actions.FILTER_USERS:
       return { ...state, filter: action.payload };
     case Actions.CLEAR_FILTER_USERS:
