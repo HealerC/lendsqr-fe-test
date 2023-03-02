@@ -1,4 +1,9 @@
-import { initialState, ACTIONTYPE, Actions } from "./state-actions";
+import {
+  initialState,
+  ACTIONTYPE,
+  Actions,
+  initialSort,
+} from "./state-actions";
 
 export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
   switch (action.type) {
@@ -23,7 +28,7 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
         }
         return user;
       });
-      return { ...state, userList };
+      return { ...state, userList, sort: { ...initialSort } };
     }
     case Actions.ACTIVATE_USER: {
       const userId = action.payload;
@@ -33,7 +38,7 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
         }
         return user;
       });
-      return { ...state, userList };
+      return { ...state, userList, sort: { ...initialSort } };
     }
     case Actions.TOGGLE_MOBILE_DRAWER: {
       return { ...state, isMobileDrawerOpen: !state.isMobileDrawerOpen };

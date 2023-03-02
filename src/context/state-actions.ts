@@ -14,6 +14,11 @@ const initialFilterValues: UserDetailsFilter = {
   status: "" as Status,
 };
 
+export const initialSort = {
+  by: "" as keyof UserDetails,
+  desc: true,
+};
+
 export const initialState = {
   loggedIn: false,
   loading: false,
@@ -21,10 +26,7 @@ export const initialState = {
   isFilterModalOpen: false,
   userList: [] as UserDetails[],
   userListSummary: {} as UserDetailsSummary,
-  sort: {
-    by: "" as keyof UserDetails,
-    desc: true,
-  },
+  sort: initialSort,
   filter: {
     result: [] as UserDetails[],
     values: initialFilterValues,
