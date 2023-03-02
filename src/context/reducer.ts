@@ -68,6 +68,14 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
           usersPerPage: action.payload.usersPerPage,
         },
       };
+    case Actions.CHANGE_PAGE:
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          page: action.payload.page,
+        },
+      };
     default:
       throw new Error();
   }

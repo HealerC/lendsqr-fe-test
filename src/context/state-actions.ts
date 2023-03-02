@@ -34,7 +34,7 @@ export const initialState = {
   pagination: {
     page: 1,
     usersPerPage: 10,
-    totalPageCount: 0,
+    totalPageCount: 10,
   },
 };
 
@@ -51,6 +51,7 @@ export const Actions = {
   CLEAR_FILTER_USERS: "CLEAR_FILTER_USERS",
   SET_FILTER_USERS: "SET_FILTER_USERS",
   SET_USERS_PER_PAGE: "SET_USERS_PER_PAGE",
+  CHANGE_PAGE: "CHANGE_PAGE",
 } as const;
 
 export type ActionKeys = typeof Actions[keyof typeof Actions];
@@ -83,4 +84,8 @@ export type ACTIONTYPE =
   | {
       type: typeof Actions.SET_USERS_PER_PAGE;
       payload: { usersPerPage: number };
+    }
+  | {
+      type: typeof Actions.CHANGE_PAGE;
+      payload: { page: number };
     };
