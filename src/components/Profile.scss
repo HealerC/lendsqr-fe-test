@@ -1,3 +1,4 @@
+@use "../styles/variables";
 .profile {
   display: flex;
   align-items: center;
@@ -10,11 +11,17 @@
     font-weight: 500;
     font-size: 16px;
     text-transform: capitalize;
-    color: black;
   }
   border-radius: 10px;
   p {
     display: none;
+  }
+  p {
+    color: variables.$secondary;
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
   }
 }
 

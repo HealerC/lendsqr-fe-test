@@ -1,3 +1,5 @@
+@use "../styles/variables";
+
 $search-bar-width: 400px;
 $search-button-width: 56px;
 .search-bar {
@@ -22,14 +24,17 @@ $search-button-width: 56px;
   border-right: 0;
   padding: 1rem;
 
+  font-family: "Work Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
 
-  /* #545F7D */
+  color: variables.$secondary;
 
-  color: #545f7d;
+  &::placeholder {
+    color: #545f7d;
+  }
   &:hover {
     border-color: hsla(220, 58%, 31%, 0.5);
   }
@@ -44,6 +49,8 @@ $search-button-width: 56px;
   margin: 0;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   box-shadow: none;
   color: white;
 }

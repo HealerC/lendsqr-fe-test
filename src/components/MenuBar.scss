@@ -5,7 +5,7 @@
   align-items: center;
 
   .app-logo-menubar {
-    width: 140px;
+    width: 144.8px;
     height: auto;
     cursor: pointer;
   }
@@ -21,6 +21,7 @@
   flex-direction: row;
   align-items: center;
   background-color: white;
+  box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.04);
   z-index: 9999;
   justify-content: space-between;
 
@@ -35,6 +36,10 @@
     }
     a {
       display: none;
+    }
+    a {
+      color: variables.$secondary;
+      // font-family: 'Roboto', sans-serif;
     }
   }
 }
