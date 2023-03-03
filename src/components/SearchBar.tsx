@@ -14,8 +14,8 @@ export default function SearchBar({ value, handleChange, className }: Props) {
         type="search"
         autoComplete="search"
         placeholder="Search for anything"
-        value={value}
-        onChange={handleChange}
+        // value={value}
+        // onChange={handleChange}
         className="search-text-field"
       />
 
