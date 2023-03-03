@@ -12,6 +12,9 @@ import { DrawerItemBase, DrawerItemDetails } from "../utils/app-drawer-content";
 import "./DrawerItemsComponent.scss";
 import SearchBar from "./SearchBar";
 import Bell from "./Bell";
+import bellIcon from "../assets/icons/bell.svg";
+import ArticleIcon from "@mui/icons-material/Article";
+import Toolbar from "@mui/material/Toolbar";
 
 const Link = React.forwardRef<HTMLAnchorElement, NavLinkProps>(function Link(
   itemProps,
@@ -39,9 +42,15 @@ function ListItemButtonLink({ icon, primary, to }: ListItemButtonLinkProps) {
   );
 }
 
-function Item({ id, icon, text, route = "" }: DrawerItemBase) {
+function Item({
+  id,
+  icon,
+  text,
+  route = "",
+  className = "",
+}: DrawerItemBase & { className?: string }) {
   return (
-    <ListItem key={id} disablePadding>
+    <ListItem key={id} disablePadding className={className}>
       <ListItemButtonLink icon={icon} primary={text} to={route} />
     </ListItem>
   );
@@ -105,19 +114,22 @@ export default function DrawerItemsComponent() {
 
   return (
     <div>
-      <List className="drawer-small-screens">
-        <SearchBar value="latire" handleChange={() => {}} />
+      <Toolbar sx={{ height: "80px" }} />
+      <List className="drawer-mobile">
+        <SearchBar value="latire" handleChange={() => {}} className="mobile" />
         <Item
           id="notifications"
-          icon={<Bell />}
+          icon={<img src={bellIcon} />}
           text="Notifications"
           route="https://www.google.com"
+          className="notifications-mobile"
         />
         <Item
           id="docs"
-          icon={<Bell />}
+          icon={<ArticleIcon />}
           text="Documentation"
           route="https://www.google.com"
+          className="documentation-mobile"
         />
       </List>
       {getItems()}

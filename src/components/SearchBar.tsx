@@ -5,10 +5,11 @@ import SearchIcon from "../assets/icons/search.svg";
 type Props = {
   value: string;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
 };
-export default function SearchBar({ value, handleChange }: Props) {
+export default function SearchBar({ value, handleChange, className }: Props) {
   return (
-    <div className="search-bar">
+    <div className={`search-bar ${className}`}>
       <input
         type="search"
         autoComplete="search"

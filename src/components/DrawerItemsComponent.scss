@@ -18,3 +18,15 @@ $drawerWidth: 283px;
 .collapsible-items-wrapper {
   margin-left: 1rem;
 }
+
+@media (min-width: 910px) {
+  .MuiListItem-root.notifications-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 950px) {
+  .MuiListItem-root.documentation-mobile {
+    display: none;
+  }
+}

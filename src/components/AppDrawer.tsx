@@ -15,11 +15,9 @@ export default function AppDrawer() {
         ModalProps={{ keepMounted: true }}
         className="temporary-drawer"
       >
-        <Toolbar />
         <DrawerItemsComponent />
       </Drawer>
       <Drawer variant="permanent" className="permanent-drawer" open>
-        <Toolbar />
         <DrawerItemsComponent />
       </Drawer>
     </nav>

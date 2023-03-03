@@ -3,6 +3,15 @@ $search-button-width: 56px;
 .search-bar {
   display: none;
 }
+.search-bar.mobile {
+  display: flex;
+  input {
+    border-radius: 0;
+  }
+  .search-button {
+    border-radius: 0;
+  }
+}
 .search-text-field {
   height: 40px;
   background-color: transparent;
@@ -42,6 +51,9 @@ $search-button-width: 56px;
 @media (min-width: 800px) {
   .search-bar {
     display: flex;
+    &.mobile {
+      display: none;
+    }
   }
 }
 
