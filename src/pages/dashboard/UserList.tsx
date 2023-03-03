@@ -42,8 +42,8 @@ export default function UserList() {
   }
 
   return (
-    <div>
-      <h1>Users</h1>
+    <div className="user-list">
+      <h1 className="title">Users</h1>
       <section className="user-summary">{getCards()}</section>
       <AppTable />
     </div>

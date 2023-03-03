@@ -1,18 +1,51 @@
+@use "../styles/variables";
+
 .summary-card {
   box-sizing: border-box;
-  padding: 20px 30px 30px 30px;
-  margin-bottom: 20px;
+  padding: 20px 0 30px 30px;
+
+  margin-bottom: 40px;
   margin-right: 20px;
+
   flex-basis: 200px;
+  flex-grow: 1;
+
   height: 160px;
   //   width: 200px;
   //   max-width: 200px;
   //   flex-grow: 1;
   //   flex-shrink: 0;
 
+  &:last-child {
+    margin-right: 0;
+  }
+
   // Figma
   background: #ffffff;
   border: 1px solid rgba(33, 63, 125, 0.06);
   box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
   border-radius: 4px;
+
+  div {
+    margin-bottom: 14px;
+    line-height: 0;
+  }
+  p {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+
+    color: #545f7d;
+    margin-bottom: 0px;
+  }
+  h3 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    text-transform: uppercase;
+
+    line-height: 0.5rem;
+    color: variables.$secondary;
+  }
 }

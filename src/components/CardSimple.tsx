@@ -6,7 +6,7 @@ import "./CardSimple.scss";
 export default function CardSimple({ icon, title, data }: SummaryData) {
   return (
     <Card variant="outlined" className="summary-card">
-      {icon}
+      <div className="icon">{icon}</div>
       <p>{title}</p>
       <h3>{data}</h3>
     </Card>
