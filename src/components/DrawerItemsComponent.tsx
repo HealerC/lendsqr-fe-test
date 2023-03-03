@@ -34,7 +34,7 @@ function ListItemButtonLink({ icon, primary, to }: ListItemButtonLinkProps) {
     <ListItemButton
       component={Link}
       to={to}
-      sx={{ color: Boolean(match) ? "Yellow" : "Green" }}
+      className={Boolean(match) ? "dashboard-link active" : "dashboard-link"}
     >
       {icon && <ListItemIcon>{icon}</ListItemIcon>}
       <ListItemText primary={primary} />
@@ -99,7 +99,7 @@ export default function DrawerItemsComponent() {
     return Object.keys(drawerItems).map((category) => {
       return (
         <List key={category}>
-          <p>{category !== "uncategorized" && category}</p>
+          <p className="category">{category !== "uncategorized" && category}</p>
           {drawerItems[category].map((item) => {
             if (item.details) {
               return <ItemWithDetails {...item} />;
@@ -113,7 +113,7 @@ export default function DrawerItemsComponent() {
   };
 
   return (
-    <div>
+    <div className="drawer-components">
       <Toolbar sx={{ height: "80px" }} />
       <List className="drawer-mobile">
         <SearchBar value="latire" handleChange={() => {}} className="mobile" />

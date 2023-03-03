@@ -1,7 +1,43 @@
+@use "../styles/variables";
 $drawerWidth: 283px;
 
+.drawer-components {
+  .MuiTypography-root {
+    font-family: "Work Sans", sans-serif;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: capitalize;
+
+    // line-height: 19px;
+  }
+  .MuiListItemButton-root {
+    padding-left: 30px;
+
+    &.dashboard-link {
+      color: variables.$secondary;
+      opacity: 0.6;
+
+      &.active {
+        opacity: 1;
+        border-left: 3px solid variables.$primary;
+        background-color: transparentize(variables.$primary, 1 - 0.06);
+      }
+    }
+  }
+
+  .category {
+    padding-left: 30px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    text-transform: uppercase;
+  }
+}
 .MuiListItemButton-root .MuiListItemIcon-root {
-  min-width: 40px;
+  min-width: 25px;
 }
 
 .MuiListItemIcon-root.expand-more-icon {
