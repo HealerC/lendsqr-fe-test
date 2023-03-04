@@ -27,6 +27,10 @@
         background-color: rgba(33, 63, 125, 0.1);
       }
     }
+
+    .MuiSvgIcon-root {
+      color: inherit;
+    }
   }
 
   #limiter-label {
