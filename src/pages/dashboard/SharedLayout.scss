@@ -1,3 +1,5 @@
+@use "../../styles/variables";
+
 .app-dashboard {
   background-color: #e5e5e5;
   font-family: "Work Sans", system-ui, -apple-system, BlinkMacSystemFont,
@@ -8,13 +10,23 @@
     display: flex;
 
     .app-wrapper {
-      flex-grow: 1;
+      // flex-grow: 1;
       padding: 60px;
       padding-top: 130px;
+      width: 100%;
     }
   }
 }
 
 .MuiMenuItem-root {
   font-family: "Work Sans", sans-serif !important;
+}
+@media (min-width: 600px) {
+  .app-dashboard {
+    .drawer-and-app {
+      .app-wrapper {
+        width: calc(100% - variables.$drawerWidth);
+      }
+    }
+  }
 }
