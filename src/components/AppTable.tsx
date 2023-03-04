@@ -41,7 +41,7 @@ const tableHeaderList: TableHeader[] = [
   ["organization", "orgName"],
   ["username", "userName"],
   ["email", "email"],
-  ["phonenumber", "phoneNumber"],
+  ["phone number", "phoneNumber"],
   ["date joined", "createdAt"],
   ["status", "status"],
 ];
@@ -101,18 +101,23 @@ export default function BasicTable() {
     setAnchorData(null);
   };
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative" }} className="app-table-container">
       <TableContainer component={Paper} sx={{ position: "relative" }}>
         <Toolbar>
-          <Button variant="outlined" onClick={toggleFilterModal}>
+          <Button
+            variant="outlined"
+            size="small"
+            color="secondary"
+            onClick={toggleFilterModal}
+          >
             Filter users
           </Button>
         </Toolbar>
-        <Table sx={{ minWidth: 650 }}>
+        <Table sx={{ minWidth: 650 }} className="app-table">
           <TableHead>
             <TableRow>
               {tableHeaderList.map((thItem) => (
-                <TableCell key={thItem + "x1"}>
+                <TableCell key={thItem + "x1"} className="theader">
                   {thItem[0]}
                   <IconButton
                     className={
@@ -141,15 +146,22 @@ export default function BasicTable() {
                   {row.orgName}
                 </TableCell>
                 <TableCell>{row.userName}</TableCell>
-                <TableCell>
-                  <a href={`mailto:${row.email}`}>{row.email}</a>
+                <TableCell className="email">
+                  <a
+                    href={`mailto:${row.email}`}
+                    dangerouslySetInnerHTML={{
+                      __html: row.email.replace("@", "<wbr/>@"),
+                    }}
+                  ></a>
                 </TableCell>
-                <TableCell>
+                <TableCell className="phone-number">
                   <a href={`tel:${row.phoneNumber}`}>{row.phoneNumber}</a>
                 </TableCell>
-                <TableCell>{getDateString(row.createdAt)}</TableCell>
-                <TableCell>
-                  <Chip label={row.status} />
+                <TableCell className="date">
+                  {getDateString(row.createdAt)}
+                </TableCell>
+                <TableCell className="status">
+                  <Chip label={row.status} className={row.status} />
                 </TableCell>
                 <TableCell>
                   <IconButton
@@ -165,15 +177,16 @@ export default function BasicTable() {
           </TableBody>
         </Table>
         <FilterModal />
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          <TableLimiterComponent />
-          <TablePagination />
-        </Toolbar>
       </TableContainer>
+      <Toolbar sx={{ justifyContent: "space-between" }}>
+        <TableLimiterComponent />
+        <TablePagination />
+      </Toolbar>
       <Menu
         anchorEl={anchorData?.element}
         open={Boolean(anchorData)}
         onClose={handleClose}
+        className="extra-actions"
       >
         <MenuItem
           onClick={() => {

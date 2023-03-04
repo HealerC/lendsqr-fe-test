@@ -1,3 +1,5 @@
+@use "../styles/variables";
+
 .sort-icon {
   opacity: 0.5;
   img {
@@ -11,5 +13,77 @@
     img {
       transform: rotate(180deg);
     }
+  }
+}
+
+.app-table {
+  .MuiTableCell-root {
+    font-family: "Work Sans", sans-serif;
+    color: variables.$secondary;
+    // padding: 14px;
+    // padding: 10px 16px;
+
+    &.date {
+      white-space: nowrap;
+    }
+
+    &.email,
+    &.phone-number {
+      a:link,
+      a:visited {
+        color: inherit;
+        text-decoration: none;
+      }
+      a:hover,
+      a:active {
+        text-decoration: underline;
+      }
+    }
+
+    &.status {
+      text-transform: capitalize;
+      .blacklisted,
+      .pending,
+      .inactive,
+      .active {
+        font-family: "Work Sans", sans-serif;
+      }
+      .blacklisted {
+        // background-color: green;
+        color: #e4033b;
+        background-color: transparentize(#e4033b, 1-0.1);
+      }
+      .pending {
+        color: #e9b200;
+        background-color: transparentize($color: #e9b200, $amount: 1-0.1);
+      }
+      .inactive {
+        color: #545f7d;
+        background-color: transparentize(#545f7d, 1-0.06);
+      }
+      .active {
+        color: #39cd62;
+        background-color: transparentize(#39cd62, 1-0.06);
+      }
+    }
+  }
+  th.theader {
+    text-transform: uppercase;
+    font-size: 12px;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  td {
+    font-size: 14px;
+  }
+}
+
+.extra-actions {
+  .MuiTypography-root {
+    font-family: "Work Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: variables.$secondary;
+    font-style: normal;
   }
 }
