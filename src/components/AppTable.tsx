@@ -178,7 +178,7 @@ export default function BasicTable() {
         </Table>
         <FilterModal />
       </TableContainer>
-      <Toolbar sx={{ justifyContent: "space-between" }}>
+      <Toolbar className="table-bottom-toolbar">
         <TableLimiterComponent />
         <TablePagination />
       </Toolbar>
