@@ -4,6 +4,7 @@ import Select from "@mui/material/Select";
 import KeyboardArrowDownRounded from "@mui/icons-material/KeyboardArrowDownRounded";
 import MenuItem from "@mui/material/MenuItem";
 import { useAppContext } from "../context/context";
+import "./TableLimiterComponent.scss";
 
 export default function LimiterComponent() {
   const {
@@ -11,7 +12,10 @@ export default function LimiterComponent() {
     setUsersPerPage,
   } = useAppContext();
   return (
-    <FormControl sx={{ flexDirection: "row", alignItems: "center" }}>
+    <FormControl
+      sx={{ flexDirection: "row", alignItems: "center" }}
+      className="table-limiter"
+    >
       <InputLabel
         id="limiter-label"
         shrink={true}
@@ -29,6 +33,8 @@ export default function LimiterComponent() {
         value={usersPerPage}
         onChange={(event) => setUsersPerPage(event)}
         IconComponent={KeyboardArrowDownRounded}
+        variant="filled"
+        disableUnderline={true}
       >
         <MenuItem value={5}>5</MenuItem>
         <MenuItem value={10}>10</MenuItem>

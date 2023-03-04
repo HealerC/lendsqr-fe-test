@@ -1,0 +1,42 @@
+@use "../styles/variables";
+.table-limiter {
+  //   background-color: green;
+  .MuiFilledInput-root {
+    color: variables.$secondary;
+    background-color: rgba(33, 63, 125, 0.1);
+    font-family: "Work Sans", sans-serif;
+    border-radius: 4px;
+    width: 80px;
+    height: 30px;
+    font-weight: 500;
+
+    &:focus {
+      background-color: unset;
+    }
+    &.Mui-focused {
+      background-color: unset;
+    }
+
+    .MuiSelect-filled {
+      //   background-color: green !important;
+      padding-left: 12px;
+      padding-top: 7px;
+      padding-bottom: 7px;
+
+      &:focus {
+        background-color: rgba(33, 63, 125, 0.1);
+      }
+    }
+  }
+
+  #limiter-label {
+    font-family: "Work Sans", sans-serif !important;
+    color: variables.$secondary;
+    &:first-child {
+      margin-right: 10px;
+    }
+    &:last-child {
+      margin-left: 10px;
+    }
+  }
+}
