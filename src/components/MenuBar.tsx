@@ -10,7 +10,7 @@ import hamburgerIcon from "../assets/icons/hamburger.svg";
 import IconButton from "@mui/material/IconButton";
 
 export default function MenuBar() {
-  const { logout, toggleMobileDrawer } = useAppContext();
+  const { logout, toggleMobileDrawer, toggleFilterModal } = useAppContext();
   return (
     <AppBar className="menu-bar">
       <div className="head-logos">
@@ -24,7 +24,11 @@ export default function MenuBar() {
         <img src={Logo} className="app-logo-menubar" />
       </div>
       <main>
-        <SearchBar value="dorime" handleChange={() => console.log("change")} />
+        <SearchBar
+          value="Click to filter -->"
+          // handleChange={() => console.log("change")}
+          handleSubmit={toggleFilterModal}
+        />
         <div>
           <a href="#">Docs</a>
           <Bell />

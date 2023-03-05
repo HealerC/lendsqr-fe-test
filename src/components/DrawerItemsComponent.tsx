@@ -15,6 +15,7 @@ import Bell from "./Bell";
 import bellIcon from "../assets/icons/bell.svg";
 import ArticleIcon from "@mui/icons-material/Article";
 import Toolbar from "@mui/material/Toolbar";
+import { useAppContext } from "../context/context";
 
 const Link = React.forwardRef<HTMLAnchorElement, NavLinkProps>(function Link(
   itemProps,
@@ -95,6 +96,7 @@ function ItemWithDetails({ id, icon, text, details }: DrawerItemDetails) {
 }
 
 export default function DrawerItemsComponent() {
+  const { toggleFilterModal } = useAppContext();
   const getItems = () => {
     return Object.keys(drawerItems).map((category) => {
       return (
@@ -116,7 +118,12 @@ export default function DrawerItemsComponent() {
     <div className="drawer-components">
       <Toolbar sx={{ height: "80px" }} />
       <List className="drawer-mobile">
-        <SearchBar value="latire" handleChange={() => {}} className="mobile" />
+        <SearchBar
+          value="Click to filter -->"
+          // handleChange={() => console.log("change")}
+          handleSubmit={toggleFilterModal}
+          className="mobile"
+        />
         <Item
           id="notifications"
           icon={<img src={bellIcon} />}
