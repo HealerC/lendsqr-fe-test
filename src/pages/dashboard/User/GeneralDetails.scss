@@ -1,0 +1,23 @@
+@use "../../../styles/variables";
+.general-details {
+  .user-details-divider {
+    color: transparentize(variables.$secondary, 1-0.1);
+    border-color: transparentize(variables.$secondary, 1-0.1);
+  }
+  section {
+    h3 {
+      font-weight: 500;
+      font-size: 16px;
+      color: variables.$secondary;
+    }
+    .info {
+      // display: flex;
+      // flex-wrap: wrap;
+      // justify-content: stretch;
+
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-gap: 20px;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.single-user-info {
+  color: #545f7d;
+  //   background-color: coral;
+  //   border: 1px solid black;
+
+  .user-info-title {
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .user-info-value {
+    font-weight: 500;
+    font-size: 16px;
+
+    a:link,
+    a:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+    a:hover,
+    a:active {
+      text-decoration: underline;
+    }
+  }
+}

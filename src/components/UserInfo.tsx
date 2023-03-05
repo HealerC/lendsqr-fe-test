@@ -1,4 +1,5 @@
 import React from "react";
+import "./UserInfo.scss";
 
 type InfoTypes =
   | "email"
@@ -15,7 +16,7 @@ type UserInfoProps = {
 };
 export default function UserInfo({ title, value, type }: UserInfoProps) {
   return (
-    <div>
+    <div className="single-user-info">
       <p className="user-info-title">{title}</p>
       <p className="user-info-value">{typeHandler(type, value)}</p>
     </div>
@@ -25,7 +26,14 @@ export default function UserInfo({ title, value, type }: UserInfoProps) {
 function typeHandler(type: InfoTypes, value: React.ReactNode) {
   switch (type) {
     case "email":
-      return <a href={`mailto:${value}`}>{value}</a>;
+      return (
+        <a
+          href={`mailto:${value}`}
+          dangerouslySetInnerHTML={{
+            __html: (value as string).replace("@", "<wbr />@"),
+          }}
+        ></a>
+      );
     case "tel":
       return <a href={`tel:${value}`}>{value}</a>;
     case "instagram":
