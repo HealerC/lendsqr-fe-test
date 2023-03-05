@@ -70,6 +70,7 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
         pagination: {
           ...state.pagination,
           usersPerPage: action.payload.usersPerPage,
+          page: 1,
         },
       };
     case Actions.CHANGE_PAGE:
