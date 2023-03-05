@@ -2,7 +2,7 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import UserList from "./pages/dashboard/UserList";
-import User from "./pages/dashboard/User/User";
+import GeneralDetails from "./pages/dashboard/User/GeneralDetails";
 import Home from "./pages/dashboard/Home";
 import SharedLayout from "./pages/dashboard/SharedLayout";
 import Landing from "./pages/Landing";
@@ -31,8 +31,8 @@ function App() {
           <Route path="users">
             <Route index element={<UserList />} />
             <Route path=":userId" element={<SharedLayoutUser />}>
-              <Route index element={<User />} />
-              <Route path="general-details" element={<User />} />
+              <Route index element={<GeneralDetails />} />
+              <Route path="general-details" element={<GeneralDetails />} />
               <Route path="documents" element={<Documents />} />
               <Route path="bank-details" element={<BankDetails />} />
               <Route path="loans" element={<Loans />} />
