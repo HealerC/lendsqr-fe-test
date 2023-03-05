@@ -72,9 +72,21 @@
     font-size: 12px;
     white-space: nowrap;
     font-weight: 600;
+    border-bottom: none;
+
+    &:nth-child(2) {
+      padding-left: 0;
+      // background-color: #39cd62;
+    }
   }
   td {
     font-size: 14px;
+  }
+  .spacers {
+    border-bottom: none;
+  }
+  .first-row-cell {
+    padding-left: 0;
   }
 }
 

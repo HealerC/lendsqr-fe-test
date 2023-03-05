@@ -103,7 +103,7 @@ export default function BasicTable() {
   return (
     <div style={{ position: "relative" }} className="app-table-container">
       <TableContainer component={Paper} sx={{ position: "relative" }}>
-        <Toolbar>
+        {/* <Toolbar>
           <Button
             variant="outlined"
             size="small"
@@ -112,10 +112,11 @@ export default function BasicTable() {
           >
             Filter users
           </Button>
-        </Toolbar>
+        </Toolbar> */}
         <Table sx={{ minWidth: 650 }} className="app-table">
           <TableHead>
             <TableRow>
+              <TableCell className="spacers"></TableCell>
               {tableHeaderList.map((thItem) => (
                 <TableCell key={thItem + "x1"} className="theader">
                   {thItem[0]}
@@ -133,7 +134,7 @@ export default function BasicTable() {
                   </IconButton>
                 </TableCell>
               ))}
-              <TableCell></TableCell>
+              {/* <TableCell></TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -142,7 +143,12 @@ export default function BasicTable() {
                 key={row.userName}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <TableCell className="spacers"></TableCell>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  className="first-row-cell"
+                >
                   {row.orgName}
                 </TableCell>
                 <TableCell>{row.userName}</TableCell>
@@ -172,6 +178,7 @@ export default function BasicTable() {
                     <img src={moreActionsIcon} />
                   </IconButton>
                 </TableCell>
+                <TableCell className="spacers"></TableCell>
               </TableRow>
             ))}
           </TableBody>
