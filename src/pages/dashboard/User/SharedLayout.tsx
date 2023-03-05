@@ -154,7 +154,7 @@ export default function User() {
           />
         </Tabs>
       </header>
-      <div className="user-details-container">
+      <div className="user-details-outlet-container">
         <Outlet />
       </div>
     </div>
