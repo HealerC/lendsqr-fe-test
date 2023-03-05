@@ -1,5 +1,137 @@
-.header-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+@use "../../../styles/variables";
+
+.user-details-shared {
+  .back-button {
+    font-family: "Work Sans";
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: capitalize;
+    color: variables.$secondary;
+  }
+
+  .header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      font-weight: 500;
+      font-size: 24px;
+      color: variables.$secondary;
+    }
+
+    button {
+      font-family: "Work Sans", sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 8px;
+
+      &.blacklist-button {
+        color: #e4033b;
+        border: 1px solid #e4033b;
+        margin-right: 20px;
+      }
+      &.activate-button {
+        color: variables.$primary;
+        border: 1px solid #39cdcc;
+      }
+      &.Mui-disabled {
+        color: rgba(0, 0, 0, 0.26);
+        border: 1px solid rgba(0, 0, 0, 0.12);
+      }
+    }
+  }
+
+  header {
+    background-color: white;
+    margin-top: 46px;
+    border: 1px solid rgba(33, 63, 125, 0.06);
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    padding: 30px;
+    padding-bottom: 0;
+
+    .user-summary {
+      display: flex;
+
+      .divider {
+        height: 80px;
+        color: transparentize(#545f7d, 1-0.2);
+        border-color: transparentize(#545f7d, 1-0.2);
+        // margin-top: 10px;
+        // margin-bottom: 40px;
+      }
+
+      .profile-details {
+        display: flex;
+        // background-color: burlywood;
+        .avatar {
+          width: 100px;
+          height: 100px;
+        }
+
+        .profile-info {
+          margin-left: 20px;
+          // border-right: 1px solid transparentize(#545f7d, 1-0.2);
+          padding-right: 30px;
+          // align-self: center;
+          h2 {
+            font-weight: 500;
+            font-size: 22px;
+            color: variables.$secondary;
+            margin-bottom: 8px;
+          }
+          p {
+            margin-top: 0;
+            font-weight: 400;
+            font-size: 14px;
+            color: #545f7d;
+          }
+        }
+      }
+
+      .tier {
+        // background-color: chocolate;
+        padding-left: 30px;
+        padding-right: 30px;
+        // border-right: 1px solid transparentize(#545f7d, 1-0.2);
+        align-self: center;
+        p {
+          font-weight: 500;
+          font-size: 14px;
+          color: #545f7d;
+          margin-bottom: 10.96px;
+        }
+      }
+
+      .bank-details {
+        padding-left: 30px;
+        padding-right: 30px;
+        color: variables.$secondary;
+
+        .account-balance {
+          font-weight: 500;
+          font-size: 22px;
+          margin-bottom: 12px;
+        }
+        .bank {
+          font-weight: 400;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .tabs {
+      margin-top: 50px;
+      a {
+        font-family: "Work Sans";
+        font-weight: 400;
+        font-size: 16px;
+        text-transform: capitalize;
+        letter-spacing: 0;
+      }
+    }
+  }
 }
