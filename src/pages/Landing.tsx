@@ -1,5 +1,5 @@
 import Logo from "../assets/images/logo.png";
-import LandingBanner from "./landing-banner.png";
+import LandingBanner from "../assets/images/landing-banner.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/context";
