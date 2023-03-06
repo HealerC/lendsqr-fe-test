@@ -25,6 +25,10 @@ $drawerWidth: 283px;
         background-color: transparentize(variables.$primary, 1 - 0.06);
       }
     }
+
+    .expandable-text {
+      color: variables.$secondary;
+    }
   }
 
   .category {
@@ -34,6 +38,7 @@ $drawerWidth: 283px;
     font-size: 12px;
     line-height: 14px;
     text-transform: uppercase;
+    color: #545f7d;
   }
 }
 .MuiListItemButton-root .MuiListItemIcon-root {

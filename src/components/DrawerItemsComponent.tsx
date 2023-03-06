@@ -69,7 +69,7 @@ function ItemWithDetails({ id, icon, text, details }: DrawerItemDetails) {
       <ListItem key={id} disablePadding>
         <ListItemButton onClick={handleExpandClick} disableRipple>
           <ListItemIcon>{icon}</ListItemIcon>
-          <ListItemText primary={text} />
+          <ListItemText primary={text} className="expandable-text" />
           <ListItemIcon
             className={
               expanded ? "expand-more-icon expanded" : "expand-more-icon"
