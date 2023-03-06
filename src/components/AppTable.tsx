@@ -101,8 +101,8 @@ export default function BasicTable() {
     setAnchorData(null);
   };
   return (
-    <div style={{ position: "relative" }} className="app-table-container">
-      <TableContainer component={Paper} sx={{ position: "relative" }}>
+    <div style={{ position: "relative" }} className="app-table-wrapper">
+      <TableContainer component={Paper} className="app-table-container">
         {/* <Toolbar>
           <Button
             variant="outlined"

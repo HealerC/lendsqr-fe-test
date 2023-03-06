@@ -1,0 +1,45 @@
+.filter-form {
+  .MuiFormControl-root {
+    margin-bottom: 20px;
+  }
+
+  .MuiFormLabel-root {
+    font-family: "Work Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #545f7d;
+    margin-bottom: 6px;
+  }
+  .MuiOutlinedInput-root {
+    height: 40px;
+    font-family: "Work Sans", sans-serif;
+    border-radius: 8px;
+    fieldset {
+      border-color: transparentize(#213f7d, 1-0.2);
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+
+    button {
+      flex-grow: 1;
+      text-transform: capitalize;
+      font-family: "Work Sans";
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 8px;
+      &:first-child {
+        margin-right: 24px;
+      }
+
+      &.reset {
+        border: 1px solid #545f7d;
+      }
+      &.submit {
+        color: white;
+        box-shadow: none;
+      }
+    }
+  }
+}

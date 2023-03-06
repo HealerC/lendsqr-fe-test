@@ -19,7 +19,7 @@ export default function UserList() {
   const navigate = useNavigate();
   async function getUsers() {
     try {
-      const { data } = await axios.get<UserDetailsAPI[]>(localUrl);
+      const { data } = await axios.get<UserDetailsAPI[]>(apiUrl);
       const userList = mapUserDetailsApiToState(data);
       setUsers(userList);
     } catch (error) {

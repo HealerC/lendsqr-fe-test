@@ -14,18 +14,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useAppContext } from "../context/context";
 import FilterModalComponents from "./FilterModalComponents";
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "10%",
-  left: "10%",
-  // transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import "./FilterModal.scss";
 
 export default function FilterModal() {
   const { isFilterModalOpen, toggleFilterModal } = useAppContext();
@@ -38,7 +27,7 @@ export default function FilterModal() {
       disableAutoFocus
       onClose={toggleFilterModal}
     >
-      <Box sx={style}>
+      <Box className="filter-modal-box">
         <FilterModalComponents />
       </Box>
     </Modal>

@@ -17,6 +17,7 @@
 }
 
 .app-table {
+  // position: static !important;
   .MuiTableCell-root {
     font-family: "Work Sans", sans-serif;
     color: variables.$secondary;
@@ -90,11 +91,28 @@
   }
 }
 
-.app-table-container {
+.app-table-wrapper {
   .table-bottom-toolbar {
     // justify-content: space-between;
     flex-direction: column;
     margin-top: 1rem;
+  }
+}
+
+// Positioning the modal
+.app-table-container {
+  .MuiModal-root {
+    position: absolute;
+    .MuiBackdrop-root {
+      // position: relative;
+      background-color: transparent;
+    }
+    .MuiBox-root {
+      position: absolute;
+      top: 43px;
+      left: 17px;
+      box-shadow: none;
+    }
   }
 }
 
@@ -109,7 +127,7 @@
 }
 
 @media (min-width: 1100px) {
-  .app-table-container {
+  .app-table-wrapper {
     .table-bottom-toolbar {
       justify-content: space-between;
       flex-direction: row;

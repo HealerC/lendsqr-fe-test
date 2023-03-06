@@ -15,6 +15,7 @@ type SelectProps = {
   name: string;
   items: MenuItemType[];
   value: string;
+  className?: string;
   handleChange: (e: SelectChangeEvent<string>) => void;
 };
 export default function SelectSimple({
@@ -23,9 +24,10 @@ export default function SelectSimple({
   items,
   value,
   handleChange,
+  className,
 }: SelectProps) {
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth className={className}>
       <InputLabel
         id={`${name}-label`}
         shrink={true}

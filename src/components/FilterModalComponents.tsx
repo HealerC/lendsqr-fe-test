@@ -14,6 +14,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useAppContext } from "../context/context";
 import { UserDetails } from "../context/interfaces";
 import { Status } from "../context/interfaces";
+import "./FilterModalComponents.scss";
 
 // import TextField from "@mui/material/TextField";
 // import InputLabel from "@mui/material/InputLabel";
@@ -50,14 +51,15 @@ function getStatusList(): {
   }));
 }
 export default function FilterModalComponents() {
-  const { filter, userList, handleFilter, clearFilter } = useAppContext();
+  const { filter, userList, handleFilter, clearFilter, toggleFilterModal } =
+    useAppContext();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="filter-form">
       <SelectSimple
         name="orgName"
         label="Organization"
@@ -122,17 +124,25 @@ export default function FilterModalComponents() {
         items={getStatusList()}
         handleChange={handleFilter}
       />
-      <Button
-        variant="outlined"
-        color="secondary"
-        type="reset"
-        onClick={clearFilter}
-      >
-        Reset
-      </Button>
-      <Button variant="contained" type="submit">
-        Filter
-      </Button>
+      <div className="action-buttons">
+        <Button
+          variant="outlined"
+          color="secondary"
+          type="reset"
+          className="reset"
+          onClick={clearFilter}
+        >
+          Reset
+        </Button>
+        <Button
+          variant="contained"
+          type="submit"
+          className="submit"
+          onClick={toggleFilterModal}
+        >
+          Filter
+        </Button>
+      </div>
     </form>
   );
 }

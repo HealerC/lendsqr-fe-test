@@ -12,6 +12,7 @@ type InputProps = {
   handleChange: (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void;
+  className?: string;
 };
 export default function InputSimple({
   name,
@@ -20,9 +21,10 @@ export default function InputSimple({
   autoComplete,
   value,
   handleChange,
+  className,
 }: InputProps) {
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth className={className}>
       <InputLabel
         htmlFor={name}
         shrink={true}
