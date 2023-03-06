@@ -25,6 +25,7 @@ import Button from "@mui/material/Button";
 import FilterModal from "./FilterModal";
 import TableLimiterComponent from "./TableLimiterComponent";
 import TablePagination from "./TablePagination";
+import Skeleton from "@mui/material/Skeleton";
 import "./AppTable.scss";
 
 type Data = Omit<
@@ -80,6 +81,7 @@ export default function BasicTable() {
     sort,
     filter: { result },
     pagination: { page, usersPerPage },
+    loading,
   } = useAppContext();
   const navigate = useNavigate();
   let displayedResult = sort.by ? sorter(result, sort.by, sort.desc) : result;
@@ -138,49 +140,86 @@ export default function BasicTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.userName}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell className="spacers"></TableCell>
-                <TableCell
-                  component="th"
-                  scope="row"
-                  className="first-row-cell"
+            {loading &&
+              Array(10)
+                .fill(undefined)
+                .map((_value, index) => (
+                  <TableRow>
+                    <TableCell>
+                      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+                    </TableCell>
+                  </TableRow>
+                ))}
+
+            {!loading &&
+              rows &&
+              rows.map((row) => (
+                <TableRow
+                  key={row.userName}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  {row.orgName}
-                </TableCell>
-                <TableCell>{row.userName}</TableCell>
-                <TableCell className="email">
-                  <a
-                    href={`mailto:${row.email}`}
-                    dangerouslySetInnerHTML={{
-                      __html: row.email.replace("@", "<wbr/>@"),
-                    }}
-                  ></a>
-                </TableCell>
-                <TableCell className="phone-number">
-                  <a href={`tel:${row.phoneNumber}`}>{row.phoneNumber}</a>
-                </TableCell>
-                <TableCell className="date">
-                  {getDateString(row.createdAt)}
-                </TableCell>
-                <TableCell className="status">
-                  <Chip label={row.status} className={row.status} />
-                </TableCell>
-                <TableCell>
-                  <IconButton
-                    onClick={(event) => {
-                      handleOpen(event, row.id);
-                    }}
+                  <TableCell className="spacers"></TableCell>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    className="first-row-cell"
                   >
-                    <img src={moreActionsIcon} />
-                  </IconButton>
-                </TableCell>
-                <TableCell className="spacers"></TableCell>
-              </TableRow>
-            ))}
+                    {row.orgName}
+                  </TableCell>
+                  <TableCell>{row.userName}</TableCell>
+                  <TableCell className="email">
+                    <a
+                      href={`mailto:${row.email}`}
+                      dangerouslySetInnerHTML={{
+                        __html: row.email.replace("@", "<wbr/>@"),
+                      }}
+                    ></a>
+                  </TableCell>
+                  <TableCell className="phone-number">
+                    <a href={`tel:${row.phoneNumber}`}>{row.phoneNumber}</a>
+                  </TableCell>
+                  <TableCell className="date">
+                    {getDateString(row.createdAt)}
+                  </TableCell>
+                  <TableCell className="status">
+                    <Chip label={row.status} className={row.status} />
+                  </TableCell>
+                  <TableCell>
+                    <IconButton
+                      onClick={(event) => {
+                        handleOpen(event, row.id);
+                      }}
+                    >
+                      <img src={moreActionsIcon} />
+                    </IconButton>
+                  </TableCell>
+                  <TableCell className="spacers"></TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
         <FilterModal />
