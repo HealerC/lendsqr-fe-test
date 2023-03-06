@@ -55,14 +55,37 @@ $drawerWidth: 283px;
   margin-left: 1rem;
 }
 
+.drawer-mobile {
+  color: variables.$secondary;
+
+  div,
+  a {
+    // background-color: aquamarine;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: inherit;
+    &:hover {
+      background-color: transparentize(rgb(141, 131, 131), 1-0.1);
+    }
+  }
+}
+
 @media (min-width: 910px) {
-  .MuiListItem-root.notifications-mobile {
-    display: none;
+  .drawer-mobile {
+    .notifications-mobile {
+      display: none;
+    }
   }
 }
 
 @media (min-width: 950px) {
-  .MuiListItem-root.documentation-mobile {
+  .MuiToolbar-root.drawer-mobile {
     display: none;
+    .documentation-mobile {
+      display: none;
+    }
   }
 }

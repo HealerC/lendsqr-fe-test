@@ -117,13 +117,7 @@ export default function DrawerItemsComponent() {
   return (
     <div className="drawer-components">
       <Toolbar sx={{ height: "80px" }} />
-      <List className="drawer-mobile">
-        <SearchBar
-          value="Click to filter -->"
-          // handleChange={() => console.log("change")}
-          handleSubmit={toggleFilterModal}
-          className="mobile"
-        />
+      {/* <List className="drawer-mobile">
         <Item
           id="notifications"
           icon={<img src={bellIcon} />}
@@ -138,7 +132,17 @@ export default function DrawerItemsComponent() {
           route="https://www.google.com"
           className="documentation-mobile"
         />
-      </List>
+      </List> */}
+      <Toolbar className="drawer-mobile">
+        <div className="notifications-mobile">
+          <Bell />
+          <p>Notifs</p>
+        </div>
+        <a className="documentation-mobile" href="#">
+          <ArticleIcon color="secondary" />
+          <p>Docs</p>
+        </a>
+      </Toolbar>
       {getItems()}
     </div>
   );
