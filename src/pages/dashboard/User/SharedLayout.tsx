@@ -115,7 +115,12 @@ export default function User() {
             </p>
           </div>
         </section>
-        <Tabs value={currentTabRoutePattern} className="tabs">
+        <Tabs
+          value={currentTabRoutePattern}
+          variant="scrollable"
+          scrollButtons="auto"
+          className="tabs"
+        >
           <Tab
             component={Link}
             to="general-details"
