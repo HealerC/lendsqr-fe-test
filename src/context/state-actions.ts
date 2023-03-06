@@ -53,6 +53,7 @@ export const Actions = {
   SET_USERS_PER_PAGE: "SET_USERS_PER_PAGE",
   CHANGE_PAGE: "CHANGE_PAGE",
   SET_TOTAL_PAGE_COUNT: "SET_TOTAL_PAGE_COUNT",
+  SET_LOADING: "SET_LOADING",
 } as const;
 
 export type ActionKeys = typeof Actions[keyof typeof Actions];
@@ -93,4 +94,5 @@ export type ACTIONTYPE =
   | {
       type: typeof Actions.SET_TOTAL_PAGE_COUNT;
       payload: { totalPageCount: number };
-    };
+    }
+  | { type: typeof Actions.SET_LOADING; payload: { loading: boolean } };

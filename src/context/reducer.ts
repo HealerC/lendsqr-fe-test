@@ -15,6 +15,7 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
       const { userList, userListSummary } = action.payload;
       return {
         ...state,
+        loading: false,
         userList,
         userListSummary,
         filter: { ...state.filter, result: userList },
@@ -88,6 +89,11 @@ export const reducer = (state: typeof initialState, action: ACTIONTYPE) => {
           ...state.pagination,
           totalPageCount: action.payload.totalPageCount,
         },
+      };
+    case Actions.SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload.loading,
       };
     default:
       throw new Error();

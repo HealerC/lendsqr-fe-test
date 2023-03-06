@@ -28,6 +28,7 @@ interface AppContext extends AppState {
   clearFilter: () => void;
   setUsersPerPage: (event: SelectChangeEvent<number>) => void;
   handleChangePage: (event: React.ChangeEvent<unknown>, value: number) => void;
+  setLoading: (loading: boolean) => void;
 }
 
 const AppContext = createContext<AppContext | undefined>(undefined);
@@ -177,6 +178,10 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: Actions.CHANGE_PAGE, payload: { page: value } });
   };
 
+  const setLoading = (loading: boolean) => {
+    dispatch({ type: Actions.SET_LOADING, payload: { loading } });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -193,6 +198,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         clearFilter,
         setUsersPerPage,
         handleChangePage,
+        setLoading,
       }}
     >
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
