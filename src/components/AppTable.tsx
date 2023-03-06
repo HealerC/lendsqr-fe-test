@@ -103,7 +103,7 @@ export default function BasicTable() {
   return (
     <div style={{ position: "relative" }} className="app-table-wrapper">
       <TableContainer component={Paper} className="app-table-container">
-        {/* <Toolbar>
+        <Toolbar className="filter-button-mobile">
           <Button
             variant="outlined"
             size="small"
@@ -112,7 +112,7 @@ export default function BasicTable() {
           >
             Filter users
           </Button>
-        </Toolbar> */}
+        </Toolbar>
         <Table sx={{ minWidth: 650 }} className="app-table">
           <TableHead>
             <TableRow>

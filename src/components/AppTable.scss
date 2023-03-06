@@ -16,6 +16,31 @@
   }
 }
 
+.app-table-wrapper {
+  .table-bottom-toolbar {
+    // justify-content: space-between;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+}
+
+// Positioning the modal
+.app-table-container {
+  .MuiModal-root {
+    position: absolute;
+    .MuiBackdrop-root {
+      // position: relative;
+      background-color: transparent;
+    }
+    .MuiBox-root {
+      position: absolute;
+      top: 43px;
+      left: 17px;
+      box-shadow: none;
+    }
+  }
+}
+
 .app-table {
   // position: static !important;
   .MuiTableCell-root {
@@ -91,31 +116,6 @@
   }
 }
 
-.app-table-wrapper {
-  .table-bottom-toolbar {
-    // justify-content: space-between;
-    flex-direction: column;
-    margin-top: 1rem;
-  }
-}
-
-// Positioning the modal
-.app-table-container {
-  .MuiModal-root {
-    position: absolute;
-    .MuiBackdrop-root {
-      // position: relative;
-      background-color: transparent;
-    }
-    .MuiBox-root {
-      position: absolute;
-      top: 43px;
-      left: 17px;
-      box-shadow: none;
-    }
-  }
-}
-
 .extra-actions {
   .MuiTypography-root {
     font-family: "Work Sans", sans-serif;
@@ -123,6 +123,14 @@
     font-size: 14px;
     color: variables.$secondary;
     font-style: normal;
+  }
+}
+
+@media (min-width: 800px) {
+  .app-table-container {
+    .filter-button-mobile {
+      display: none;
+    }
   }
 }
 
