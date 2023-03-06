@@ -1,16 +1,13 @@
-import Logo from "../assets/images/logo.png";
-import LandingBanner from "../assets/images/landing-banner.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/context";
-import Box from "@mui/material/Box";
+import Logo from "../assets/images/logo.png";
+import LandingBanner from "../assets/images/landing-banner.png";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import FormHelperText from "@mui/material/FormHelperText";
 import ButtonShowPassword from "../components/ButtonShowPassword";
 import Button from "@mui/material/Button";
 import "./landing.scss";
@@ -25,18 +22,25 @@ export default function Landing() {
     const { name, value } = event.target;
     setLoginDetails({ ...loginDetails, [name]: value });
   }
+
+  /*
+   * No much authentication done. Just set login in the state to be true
+   * and navigate to '/users' where there is a list of all the users in a table
+   */
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     login();
     navigate("/users");
   }
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+
   return (
     <>
-      <img src={Logo} className="site-logo" />
+      <img src={Logo} className="site-logo" alt="lendsqr site logo" />
       <Container disableGutters={true} className="container">
         <div className="landing-item">
-          <img src={LandingBanner} className="landing-banner" />
+          <img src={LandingBanner} className="landing-banner" alt="" />
         </div>
 
         <div className="landing-item">
@@ -71,9 +75,6 @@ export default function Landing() {
                     </InputAdornment>
                   }
                 />
-                {/* <FormHelperText>
-                  Password should be at least 8 characters
-                </FormHelperText> */}
               </FormControl>
 
               <Button href="#" className="forgot-password">
