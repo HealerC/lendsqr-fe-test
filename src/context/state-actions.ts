@@ -25,7 +25,12 @@ export const initialState = {
   isMobileDrawerOpen: false,
   isFilterModalOpen: false,
   userList: [] as UserDetails[],
-  userListSummary: {} as UserDetailsSummary,
+  userListSummary: {
+    totalUsers: 0,
+    activeUsers: 0,
+    loanUsers: 0,
+    savingsUsers: 0,
+  } as UserDetailsSummary,
   sort: initialSort,
   filter: {
     result: [] as UserDetails[],
