@@ -1,3 +1,4 @@
+import { useAppContext } from "../../../context/context";
 import {
   useParams,
   useLocation,
@@ -7,14 +8,15 @@ import {
 } from "react-router-dom";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { useAppContext } from "../../../context/context";
 import Button from "@mui/material/Button";
 import backIcon from "../../../assets/icons/back.svg";
-import "./SharedLayout.scss";
 import Stars from "../../../components/Stars";
 import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
+import { useRouteMatch } from "../../../utils";
+import "./SharedLayout.scss";
 
+// All the subroutes of /users
 const userRoutes = [
   "/users/:userId/general-details",
   "/users/:userId/documents",
@@ -24,31 +26,21 @@ const userRoutes = [
   "/users/:userId/app-and-system",
 ];
 
-function useRouteMatch(patterns: readonly string[]) {
-  const { pathname } = useLocation();
-
-  for (let i = 0; i < patterns.length; i += 1) {
-    const pattern = patterns[i];
-    const possibleMatch = matchPath(pattern, pathname);
-    if (possibleMatch !== null) {
-      return possibleMatch;
-    }
-  }
-
-  return null;
-}
-
+/* SharedLayout that renders summary of the user at the top and an outlet
+where other details about the user is rendered */
 export default function User() {
-  const { userId } = useParams();
   const routeMatch = useRouteMatch(userRoutes);
   const currentTabRoutePattern =
     routeMatch?.pattern.path || "/users/:userId/general-details";
-  console.log(currentTabRoutePattern);
+  // The current route pattern... Default is `general-details`
 
   const { userList, activateUser, blacklistUser } = useAppContext();
+  const { userId } = useParams();
   const user = userList.find((person) => person.id === userId);
+
   return (
     <div className="user-details-shared">
+      {/* Goes back to the page with the userlist table */}
       <Button
         component={Link}
         to=".."
@@ -57,6 +49,7 @@ export default function User() {
       >
         Back to users
       </Button>
+
       <section className="header-nav">
         <h1>User details</h1>
         <div>
@@ -79,6 +72,7 @@ export default function User() {
           </Button>
         </div>
       </section>
+
       <header>
         <section className="user-summary">
           <div className="profile-details">
@@ -100,7 +94,7 @@ export default function User() {
           />
           <div className="tier">
             <p>User's Tier</p>
-            <Stars starCount={2} starMax={3} />
+            <Stars starCount={Math.ceil(Math.random() * 3) + 1} starMax={3} />
           </div>
           <Divider
             orientation="vertical"
@@ -115,6 +109,8 @@ export default function User() {
             </p>
           </div>
         </section>
+
+        {/* Control the route */}
         <Tabs
           value={currentTabRoutePattern}
           variant="scrollable"

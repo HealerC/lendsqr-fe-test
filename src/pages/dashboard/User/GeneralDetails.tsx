@@ -1,12 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useAppContext } from "../../../context/context";
 import UserInfo from "../../../components/UserInfo";
-import "./GeneralDetails.scss";
 import Divider from "@mui/material/Divider";
+import "./GeneralDetails.scss";
 
+/*
+ * Display general details of a user using `UserInfo` component for each detail
+ * and grouping them into sections, dividing the sections by horizontal line.
+ */
 export default function GeneralDetails() {
-  const { userId } = useParams();
   const { userList } = useAppContext();
+  const { userId } = useParams();
   const user = userList.find((person) => person.id === userId);
 
   return (

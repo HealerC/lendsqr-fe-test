@@ -1,7 +1,7 @@
+@use "../styles/variables";
+
 .single-user-info {
-  color: #545f7d;
-  //   background-color: coral;
-  //   border: 1px solid black;
+  color: variables.$secondary-light;
 
   .user-info-title {
     font-weight: 400;

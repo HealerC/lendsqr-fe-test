@@ -58,15 +58,12 @@
 
       .divider {
         height: 80px;
-        color: transparentize(#545f7d, 1-0.2);
-        border-color: transparentize(#545f7d, 1-0.2);
-        // margin-top: 10px;
-        // margin-bottom: 40px;
+        color: transparentize(variables.$secondary-light, 1-0.2);
+        border-color: transparentize(variables.$secondary-light, 1-0.2);
       }
 
       .profile-details {
         display: flex;
-        // background-color: burlywood;
         .avatar {
           width: 100px;
           height: 100px;
@@ -74,9 +71,7 @@
 
         .profile-info {
           margin-left: 20px;
-          // border-right: 1px solid transparentize(#545f7d, 1-0.2);
           padding-right: 30px;
-          // align-self: center;
           h2 {
             font-weight: 500;
             font-size: 22px;
@@ -87,21 +82,19 @@
             margin-top: 0;
             font-weight: 400;
             font-size: 14px;
-            color: #545f7d;
+            color: variables.$secondary-light;
           }
         }
       }
 
       .tier {
-        // background-color: chocolate;
         padding-left: 30px;
         padding-right: 30px;
-        // border-right: 1px solid transparentize(#545f7d, 1-0.2);
         align-self: center;
         p {
           font-weight: 500;
           font-size: 14px;
-          color: #545f7d;
+          color: variables.$secondary-light;
           margin-bottom: 10.96px;
           text-align: center;
         }
@@ -168,14 +161,9 @@
           align-items: center;
           text-align: center;
         }
-
         .divider {
           display: none;
         }
-
-        // .tier {
-        //   padding: 0;
-        // }
         .bank-details {
           align-self: center;
           text-align: center;

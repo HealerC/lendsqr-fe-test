@@ -1,6 +1,7 @@
 import React from "react";
 import "./UserInfo.scss";
 
+// The render will be based on its type
 type InfoTypes =
   | "email"
   | "tel"
@@ -14,6 +15,12 @@ type UserInfoProps = {
   value: React.ReactNode;
   type?: InfoTypes;
 };
+
+/* Display the user info, attempting to render the values differently
+depending on the types. An undefined type will just render a text,
+a telephone/email type will render link components that can cause a hyperlink
+of the value while a social media type will render the social media url with
+the username affixed on it */
 export default function UserInfo({ title, value, type }: UserInfoProps) {
   return (
     <div className="single-user-info">
