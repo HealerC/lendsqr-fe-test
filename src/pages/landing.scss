@@ -1,4 +1,4 @@
-@use "../styles/elements";
+@use "../styles/variables";
 
 .site-logo {
   position: fixed;
@@ -12,33 +12,40 @@
   height: 100vh;
 
   .landing-item {
+    // There are two `landing-item`s, The banner and the login form
     flex-grow: 1;
-    &:first-child {
-      //   background-color: pink;
-      display: none;
-    }
     display: flex;
     justify-content: center;
     align-items: center;
 
+    &:first-child {
+      // The banner should only show on larger screen sizes
+      display: none;
+    }
+
     .login-container {
       padding-left: 10px;
       padding-right: 10px;
-      //   background-color: beige;
 
       h1 {
-        color: #213f7d;
+        color: variables.$secondary;
         margin-bottom: 10px;
+        font-family: "Avenir Next", sans-serif;
+        font-weight: 700;
+        font-size: 40px;
+        letter-spacing: -0.04em;
       }
       p {
-        color: #545f7d;
+        font-family: "Avenir Next", sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        color: variables.$secondary-light;
         margin-bottom: 60px;
       }
 
       form {
         display: flex;
         flex-direction: column;
-        // background-color: yellow;
         width: 400px;
         * {
           margin-bottom: 5px;
@@ -47,31 +54,53 @@
         .forgot-password {
           align-self: flex-start;
           padding-left: 0;
+          font-family: "Avenir Next", sans-serif;
+          font-weight: 600;
+          font-size: 12px;
+          text-align: right;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
         }
         [type="submit"] {
-          @extend %landing-action-buttons;
+          font-family: "Avenir Next", sans-serif;
+          font-weight: 600;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
           font-size: 14px;
           line-height: 19px;
           color: #ffffff;
           padding-top: 15px;
           padding-bottom: 15px;
+          margin-top: 30px;
+        }
+
+        .MuiOutlinedInput-root {
+          font-family: "Avenir Next", sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          color: variables.$secondary-light;
+          border-radius: 5px;
+
+          fieldset {
+            border: 2px solid rgba(84, 95, 125, 0.15);
+          }
         }
       }
     }
   }
-  //   .MuiOutlinedInput-root {
-  //     border-radius: 50px;
-  //     border: 10px dotted red;
-  //   }
 }
+
 @media (min-width: 700px) {
   .site-logo {
+    // Reposition site logo on larger screens
     left: 57px;
     top: 66px;
   }
+
   .MuiContainer-root.container {
     .landing-item {
       &:first-child {
+        // The loading banner now shows on larger screens
         display: flex;
       }
       .landing-banner {
@@ -80,6 +109,7 @@
     }
   }
 }
+
 @media (min-width: 1200px) {
   .MuiContainer-root.container {
     max-width: 100%;
