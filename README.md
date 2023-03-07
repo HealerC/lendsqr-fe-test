@@ -1,46 +1,19 @@
-# Getting Started with Create React App
+# Lendsqr Frontend Engineer Assessment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The project completes the assessment testing _React, Typescript and SASS_ and is made up mainly of the _Login_, _User_ and _User Details_ pages.
 
-## Available Scripts
+The homepage is the `/landing` page that shows a login form, clicking on the log in take one to the `/users` page that shows the all the users in a tabular form and paginated. The table can be sorted by each of its fields by clicking on the icon beside any of the table headers. Clicking on the search button on the menu bar, opens a modal which contains a form that can be used to filter the table.
 
-In the project directory, you can run:
+On each table row, is a 'more actions' icon - the last icon on the row.Clicking on that opens up a menu where one ecan
 
-### `npm start`
+- blacklist a user
+- activate a user
+- View more details about a user.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Clicking on **View Details** on the menu navigates to a subroute that shows more details about the user.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The web app is a true repesentation of the [Figma design](https://www.figma.com/file/ZKILoCoIoy1IESdBpq3GNC/Lendsqr-Frontend-Engineering-Assessment?node-id=6819%3A58317&t=WOnR0dtA1953DjxY-0) plus it is responsive and has styles applyicable to even small devices. Furthermore, it accounts for cases such as:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. On loading the data from the API, it displays skeleton components rather
+   than leaving the DOM empty OR using spinners.
+2. It renders some component on error cases (such as network problem causing the browser's inability to fetch data from the server).
