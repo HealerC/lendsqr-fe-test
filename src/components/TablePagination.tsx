@@ -5,11 +5,15 @@ import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import "./TablePagination.scss";
 
+/*
+ * Shows and provides the UI that controls the pagination
+ */
 export default function TablePagination() {
   const {
     pagination: { page, totalPageCount },
     handleChangePage,
   } = useAppContext();
+
   return (
     <Pagination
       page={page}

@@ -6,11 +6,16 @@ import MenuItem from "@mui/material/MenuItem";
 import { useAppContext } from "../context/context";
 import "./TableLimiterComponent.scss";
 
+/*
+ * Show a limiter under a table... A text with a select input beside it
+ * and another text beside the select
+ */
 export default function LimiterComponent() {
   const {
     pagination: { usersPerPage },
     setUsersPerPage,
   } = useAppContext();
+
   return (
     <FormControl
       sx={{ flexDirection: "row", alignItems: "center" }}
