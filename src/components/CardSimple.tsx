@@ -3,6 +3,10 @@ import { SummaryData } from "../utils/summary-content";
 import Card from "@mui/material/Card";
 import "./CardSimple.scss";
 
+/*
+ * A simple card that can also take a loading prop to render
+ * a skeleton component when data is still fetching from the server.
+ */
 type CardSimpleProps = SummaryData & { loading?: boolean };
 export default function CardSimple({
   icon,
