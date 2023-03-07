@@ -34,7 +34,11 @@ export default function MenuBar() {
           handleSubmit={toggleFilterModal}
         />
         <div>
-          <a href="https://github.com/HealerC/lendsqr-fe-test" target="_blank">
+          <a
+            href="https://github.com/HealerC/lendsqr-fe-test"
+            target="_blank"
+            rel="noreferrer"
+          >
             Docs
           </a>
           <Bell />
