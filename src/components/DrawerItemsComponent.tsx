@@ -142,6 +142,7 @@ export default function DrawerItemsComponent() {
         <a
           className="documentation-mobile"
           href="https://github.com/HealerC/lendsqr-fe-test"
+          target="_blank"
         >
           <ArticleIcon color="secondary" />
           <p>Docs</p>
