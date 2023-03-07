@@ -78,6 +78,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
       dispatch({ type: Actions.SET_FILTER_USERS, payload: { result } });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.filter.values]);
 
   /* Set the number of pages when the users are filtered or 
@@ -91,6 +92,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
       type: Actions.SET_TOTAL_PAGE_COUNT,
       payload: { totalPageCount },
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.filter.result, state.pagination.usersPerPage]);
 
   const login = () => {

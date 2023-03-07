@@ -40,6 +40,7 @@ export default function useFetch<T, K>(
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
   return data;

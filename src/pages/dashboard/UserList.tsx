@@ -25,6 +25,7 @@ export default function UserList() {
       return;
     }
     setLoading(loading);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
 
   if (error) {
