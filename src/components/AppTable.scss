@@ -1,5 +1,8 @@
 @use "../styles/variables";
 
+// A sort icon in which it's property is not sorted by is shown
+// in a transparent manner. If property is sorted descending manner
+// it is shown completely opaque. If ascending, it is opaque and rotated
 .sort-icon {
   opacity: 0.5;
   img {
@@ -18,7 +21,8 @@
 
 .app-table-wrapper {
   .table-bottom-toolbar {
-    // justify-content: space-between;
+    // Mobile first... The pagination is shown under the limiter
+    // with spaces around both
     flex-direction: column;
     margin-top: 1rem;
 
@@ -28,15 +32,17 @@
   }
 }
 
-// Positioning the modal
+// Positioning the modal relative to the table rather than
+// the default positioning (relative to the entire viewport)
 .app-table-container {
   .MuiModal-root {
     position: absolute;
     .MuiBackdrop-root {
-      // position: relative;
+      // Remove the darkened color on the background of modals
       background-color: transparent;
     }
     .MuiBox-root {
+      // The modal box itself
       position: absolute;
       top: 43px;
       left: 17px;
@@ -46,19 +52,22 @@
 }
 
 .app-table {
-  // position: static !important;
+  // The app table --> <Table></Table>
+
   .MuiTableCell-root {
+    // Each table cell
     font-family: "Work Sans", sans-serif;
     color: variables.$secondary;
-    // padding: 14px;
-    // padding: 10px 16px;
 
     &.date {
+      // Date is shown in a straight line
       white-space: nowrap;
     }
 
     &.email,
     &.phone-number {
+      // The links should display the same color as other cells and
+      // should show underline on hover
       a:link,
       a:visited {
         color: inherit;
@@ -71,7 +80,10 @@
     }
 
     &.status {
+      // The status chip which shows different colors
+      // for the different "statuses"
       text-transform: capitalize;
+
       .blacklisted,
       .pending,
       .inactive,
@@ -79,7 +91,6 @@
         font-family: "Work Sans", sans-serif;
       }
       .blacklisted {
-        // background-color: green;
         color: #e4033b;
         background-color: transparentize(#e4033b, 1-0.1);
       }
@@ -98,6 +109,7 @@
     }
   }
   th.theader {
+    // The header above the table
     text-transform: uppercase;
     font-size: 12px;
     white-space: nowrap;
@@ -105,22 +117,26 @@
     border-bottom: none;
 
     &:nth-child(2) {
+      // The first header (ORGANIZATION)
       padding-left: 0;
-      // background-color: #39cd62;
     }
   }
   td {
     font-size: 14px;
   }
   .spacers {
+    // Remove the bottom border from all those cells so that the horizontal line
+    // at the bottom of each row do not extend the entire table
     border-bottom: none;
   }
   .first-row-cell {
+    // First cell of every row asides header (ORGANIZATION)
     padding-left: 0;
   }
 }
 
 .extra-actions {
+  // Extra actions menu
   .MuiTypography-root {
     font-family: "Work Sans", sans-serif;
     font-weight: 500;
@@ -133,12 +149,16 @@
 @media (min-width: 800px) {
   .app-table-container {
     .filter-button-mobile {
+      // The filter button shown at the top of the table only shows on
+      // smaller devices
       display: none;
     }
   }
 }
 
 @media (min-width: 1100px) {
+  // The pagination and limiter on larger devices show on opposite sides
+  // under the table
   .app-table-wrapper {
     .table-bottom-toolbar {
       justify-content: space-between;
