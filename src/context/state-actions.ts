@@ -20,26 +20,28 @@ export const initialSort = {
 };
 
 export const initialState = {
-  loggedIn: false,
+  loggedIn: false, // Set the log in status of the app
   loading: false,
-  isMobileDrawerOpen: false,
-  isFilterModalOpen: false,
-  userList: [] as UserDetails[],
+  isMobileDrawerOpen: false, // Used only on small devices, a mobile drawer
+  isFilterModalOpen: false, // Modal used to filter the users in the app table
+  userList: [] as UserDetails[], // The entire userlist as fetched from the API
   userListSummary: {
+    // The summary of the userList
     totalUsers: 0,
     activeUsers: 0,
     loanUsers: 0,
     savingsUsers: 0,
   } as UserDetailsSummary,
-  sort: initialSort,
+  sort: initialSort, // The sort directives prevalent
   filter: {
-    result: [] as UserDetails[],
-    values: initialFilterValues,
+    result: [] as UserDetails[], // The filtered users
+    values: initialFilterValues, // The directives used to filter the users
+    // which controls the input fields in the filter modal
   },
   pagination: {
-    page: 1,
-    usersPerPage: 10,
-    totalPageCount: 10,
+    page: 1, // The present page
+    usersPerPage: 10, // The number of users per page
+    totalPageCount: 10, // The total number of pages
   },
 };
 
@@ -61,7 +63,7 @@ export const Actions = {
   SET_LOADING: "SET_LOADING",
 } as const;
 
-export type ActionKeys = typeof Actions[keyof typeof Actions];
+// export type ActionKeys = typeof Actions[keyof typeof Actions];
 
 export type ACTIONTYPE =
   | { type: typeof Actions.LOGIN }

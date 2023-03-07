@@ -31,7 +31,8 @@ interface Education {
   monthlyIncome: string[];
   loanRepayment: string;
 }
-export type Status = "blacklisted" | "pending" | "inactive" | "active";
+
+/* Mirroring server response */
 export interface UserDetailsAPI {
   id: string;
   createdAt: string;
@@ -46,6 +47,9 @@ export interface UserDetailsAPI {
   socials: Socials;
   education: Education;
 }
+
+export type Status = "blacklisted" | "pending" | "inactive" | "active";
+/* Used in the app state as an array of users */
 export interface UserDetails extends UserDetailsAPI {
   status: Status;
 }
@@ -55,6 +59,9 @@ export interface UserDetailsSummary {
   loanUsers: number;
   savingsUsers: number;
 }
+
+/* Properties in which the filter modal input field filters.
+Not all properties in state is filterable */
 export interface UserDetailsFilter
   extends Omit<
     UserDetails,

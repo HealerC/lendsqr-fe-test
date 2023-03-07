@@ -5,7 +5,7 @@ import { UserDetails, UserDetailsFilter } from "./interfaces";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../utils/app-theme";
 import { SelectChangeEvent } from "@mui/material";
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 
 type AppState = typeof initialState;
 
@@ -36,21 +36,25 @@ const AppContext = createContext<AppContext | undefined>(undefined);
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  /* There was a change in one of the filter values (in the filter modal).
+  Filter the userList appropriately */
   useEffect(() => {
     let result: UserDetails[] = state.userList;
+
     if (Object.values(state.filter.values).every((value) => !value)) {
-      console.log("No money in the ground");
+      // No filtering is going on or all the filter input fields are empty.
+      // Show ALL users
       dispatch({ type: Actions.SET_FILTER_USERS, payload: { result } });
     } else {
+      // Filter users based on the provided filter values
       const filterKeys = Object.keys(state.filter.values);
-      // console.log("filter keys", filterKeys);
+
       filterKeys.forEach((key) => {
         if (key === "createdAt") {
           const { createdAt } = state.filter.values;
           result = createdAt
             ? result.filter((user) => createdAt.isSame(user.createdAt, "day"))
             : result;
-          console.log(result);
         } else if (key === "status") {
           const value = state.filter.values[key];
           result = value
@@ -58,10 +62,10 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
                 (user) => user.status.toLowerCase() === value.toLowerCase()
               )
             : result;
-          console.log(result);
         } else {
           const filterValue =
             state.filter.values[key as keyof UserDetailsFilter];
+
           if (filterValue && typeof filterValue === "string") {
             result = result.filter((user) =>
               user[key as keyof UserDetailsFilter]
@@ -69,18 +73,20 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
                 .includes(filterValue.toLowerCase())
             );
           }
-          console.log(result);
         }
       });
-      console.log(result);
+
       dispatch({ type: Actions.SET_FILTER_USERS, payload: { result } });
     }
   }, [state.filter.values]);
 
+  /* Set the number of pages when the users are filtered or 
+  users per page is changed */
   useEffect(() => {
     const totalUsers = state.filter.result.length;
     const { usersPerPage } = state.pagination;
     const totalPageCount = Math.ceil(totalUsers / usersPerPage);
+
     dispatch({
       type: Actions.SET_TOTAL_PAGE_COUNT,
       payload: { totalPageCount },
@@ -95,6 +101,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: Actions.LOGOUT });
   };
 
+  /* UserDetails just received from the server */
   const setUsers = (userList: UserDetails[]) => {
     const userListSummary = {
       totalUsers: userList.length,
@@ -102,6 +109,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
       loanUsers: Math.floor(Math.random() * userList.length),
       savingsUsers: Math.floor(Math.random() * userList.length),
     };
+
     dispatch({
       type: Actions.SET_USERS,
       payload: { userList, userListSummary },
@@ -127,7 +135,8 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const sortUsers = (by: keyof UserDetails) => {
     // Basically if the `by` in state and the incoming `by` is the same
     // switch the sorting order, otherwise the incoming `by` replaces
-    // the one in state and the order is default descending true
+    // the one in state and the default order is descending (desc: true)
+
     const { by: stateBy, desc: stateDesc } = state.sort;
     if (by === stateBy) {
       dispatch({ type: Actions.SORT_USERS, payload: { by, desc: !stateDesc } });
@@ -139,9 +148,8 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const handleFilter = (event: InputEvents) => {
     const prevFilterState = state.filter;
     if (event === null || "date" in event) {
-      const result = state.userList.filter((user) =>
-        event?.isSame(user.createdAt, "day")
-      );
+      // Then the date was used to filter
+
       dispatch({
         type: Actions.FILTER_USERS,
         payload: {
@@ -150,7 +158,9 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         },
       });
     } else {
+      // Any of the other values are used to filter the table
       const { name, value } = event.target;
+
       dispatch({
         type: Actions.FILTER_USERS,
         payload: {
@@ -165,12 +175,15 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: Actions.CLEAR_FILTER_USERS });
   };
 
+  /* Select input field that sets the number of users per page */
   const setUsersPerPage = (event: SelectChangeEvent<number>): void => {
     const { value } = event.target;
     const usersPerPage = typeof value === "string" ? parseInt(value) : value;
+
     dispatch({ type: Actions.SET_USERS_PER_PAGE, payload: { usersPerPage } });
   };
 
+  /* The page was changed by the pagination component */
   const handleChangePage = (
     _event: React.ChangeEvent<unknown>,
     value: number
@@ -178,6 +191,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: Actions.CHANGE_PAGE, payload: { page: value } });
   };
 
+  /* The loading is set when the browser attempts to fetch data from the api */
   const setLoading = (loading: boolean) => {
     dispatch({ type: Actions.SET_LOADING, payload: { loading } });
   };
