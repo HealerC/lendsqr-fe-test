@@ -15,7 +15,7 @@ type InputEvents =
   | React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   | DayjsEvent;
 
-interface AppContext extends AppState {
+interface Context extends AppState {
   login: () => void;
   logout: () => void;
   setUsers: (userList: UserDetails[]) => void;
@@ -31,7 +31,7 @@ interface AppContext extends AppState {
   setLoading: (loading: boolean) => void;
 }
 
-const AppContext = createContext<AppContext | undefined>(undefined);
+const AppContext = createContext<Context | undefined>(undefined);
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);

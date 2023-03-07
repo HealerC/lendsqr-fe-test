@@ -1,6 +1,3 @@
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import { Dayjs } from "dayjs";
 import TextField from "@mui/material/TextField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -8,8 +5,6 @@ import CalendarIconComponent from "./CalendarIconComponent";
 import Button from "@mui/material/Button";
 import SelectSimple from "./input/SelectSimple";
 import InputSimple from "./input/InputSimple";
-import { useState } from "react";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useAppContext } from "../context/context";
 import { UserDetails } from "../context/interfaces";

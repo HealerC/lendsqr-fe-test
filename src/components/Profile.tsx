@@ -36,7 +36,7 @@ export default function Profile({
       <Button
         className="profile"
         onClick={handleOpen}
-        endIcon={<img src={arrowDownIcon} />}
+        endIcon={<img src={arrowDownIcon} alt="" />}
       >
         <Avatar alt={username} src={profilePicturePath} />
         <p>{username}</p>

@@ -21,7 +21,7 @@ import clipboardListIcon from "../assets/icons/clipboard-list.svg";
 
 /* Create an image component from the image path */
 const getIcon = (imgPath: string): React.ReactNode => {
-  return <img src={imgPath} className="app-drawer-icon" />;
+  return <img src={imgPath} className="app-drawer-icon" alt="" />;
 };
 
 /* Elements of an app drawer item */

@@ -7,7 +7,7 @@ export default function Bell() {
   return (
     <Tooltip title="You have no notifications" className="notification-icon">
       <IconButton>
-        <img src={bellIcon} />
+        <img src={bellIcon} alt="" />
       </IconButton>
     </Tooltip>
   );

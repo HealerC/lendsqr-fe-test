@@ -1,5 +1,4 @@
 import React from "react";
-import { useAppContext } from "../context/context";
 import { NavLink, NavLinkProps, useMatch } from "react-router-dom";
 import { ListItemText } from "@mui/material";
 import List from "@mui/material/List";
@@ -140,7 +139,10 @@ export default function DrawerItemsComponent() {
           <Bell />
           <p>Notifs</p>
         </div>
-        <a className="documentation-mobile" href="#">
+        <a
+          className="documentation-mobile"
+          href="https://github.com/HealerC/lendsqr-fe-test"
+        >
           <ArticleIcon color="secondary" />
           <p>Docs</p>
         </a>

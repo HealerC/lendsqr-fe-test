@@ -34,7 +34,7 @@ export default function MenuBar() {
           handleSubmit={toggleFilterModal}
         />
         <div>
-          <a href="#">Docs</a>
+          <a href="https://github.com/HealerC/lendsqr-fe-test">Docs</a>
           <Bell />
           <Profile
             username="Adedeji"

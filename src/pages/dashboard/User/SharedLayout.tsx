@@ -38,7 +38,7 @@ export default function User() {
       <Button
         component={Link}
         to=".."
-        startIcon={<img src={backIcon} />}
+        startIcon={<img src={backIcon} alt="" />}
         className="back-button"
       >
         Back to users
