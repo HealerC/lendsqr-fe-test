@@ -1,7 +1,12 @@
 import Skeleton from "@mui/material/Skeleton";
-import { SummaryData } from "../utils/summary-content";
 import Card from "@mui/material/Card";
 import "./CardSimple.scss";
+
+export type SummaryData = {
+  icon: React.ReactNode;
+  title: string;
+  data?: string;
+};
 
 /*
  * A simple card that can also take a loading prop to render

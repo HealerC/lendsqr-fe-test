@@ -1,5 +1,6 @@
 import { UserDetails, UserDetailsAPI, Status } from "../context/interfaces";
 
+/* Map the data from the API to an object which is be used in the state of the app */
 const mapUserDetailsApiToState = (
   userListAPI: UserDetailsAPI[]
 ): UserDetails[] => {

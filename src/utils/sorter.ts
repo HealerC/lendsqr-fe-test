@@ -1,5 +1,6 @@
 import { UserDetails } from "../context/interfaces";
 
+/* Basically sort the list based on the given arguments */
 export default function sorter(
   list: UserDetails[],
   by: keyof UserDetails,
