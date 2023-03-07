@@ -88,7 +88,7 @@ export default function User() {
           />
           <div className="tier">
             <p>User's Tier</p>
-            <Stars starCount={Math.ceil(Math.random() * 3) + 1} starMax={3} />
+            <Stars starCount={2} starMax={3} />
           </div>
           <Divider
             orientation="vertical"
