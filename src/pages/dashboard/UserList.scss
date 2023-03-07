@@ -8,12 +8,14 @@
     margin-bottom: 40px;
   }
   .user-summary {
+    // The cards are displayed in a responsive grid layout
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 20px;
     margin-bottom: 40px;
   }
   &.error {
+    // The component rendered when there is a network error fetching the data
     height: 100vh;
     overflow-y: hidden;
     button {
