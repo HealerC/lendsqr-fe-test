@@ -1,11 +1,5 @@
 import { useAppContext } from "../../../context/context";
-import {
-  useParams,
-  useLocation,
-  Link,
-  Outlet,
-  matchPath,
-} from "react-router-dom";
+import { useParams, Link, Outlet } from "react-router-dom";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from "@mui/material/Button";
