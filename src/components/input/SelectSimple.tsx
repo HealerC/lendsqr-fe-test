@@ -7,9 +7,11 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import { nanoid } from "nanoid";
 
 type MenuItemType = {
-  value: string | number | readonly string[] | undefined;
-  component: React.ReactNode;
+  // Representing each item of the select field
+  value: string | number | readonly string[] | undefined; // The value of the item
+  component: React.ReactNode; // The component to be displayed... Probably string
 };
+
 type SelectProps = {
   label: string;
   name: string;

@@ -16,22 +16,9 @@ import { UserDetails } from "../context/interfaces";
 import { Status } from "../context/interfaces";
 import "./FilterModalComponents.scss";
 
-// import TextField from "@mui/material/TextField";
-// import InputLabel from "@mui/material/InputLabel";
-// import MenuItem from "@mui/material/MenuItem";
-// import FormControl from "@mui/material/FormControl";
-
-// import CalendarIcon from "../assets/icons/calendar.svg";
-// import ArrowDownSvgIcon from "./ArrowDownSvgIcon";
-// import arrowDownFilterIcon from "../assets/icons/arrow-down-filter.svg";
-// import ArrowDownComponent from "./ArrowDownComponent";
-// import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-
-// import CalendarSvgIcon from "./CalendarSvgIcon";
-// import IconButton from "@mui/material/IconButton";
-
-// import OutlinedInput from "@mui/material/OutlinedInput";
-
+/* Get a list of all the available organizations the users belongs 
+to be displayed in a custom select input field which require the {value, component}
+props to be passed in */
 function getOrgNameList(userList: UserDetails[]) {
   let nonDuplicatedOrgSet = new Set(userList.map((user) => user.orgName));
   const orgList = Array.from(nonDuplicatedOrgSet, (orgName) => ({
@@ -41,6 +28,8 @@ function getOrgNameList(userList: UserDetails[]) {
   return orgList;
 }
 
+/* Get a list of all the available status of the users 
+to be displayed in a select input field */
 function getStatusList(): {
   value: Status;
   component: string;
@@ -50,6 +39,7 @@ function getStatusList(): {
     component: item,
   }));
 }
+
 export default function FilterModalComponents() {
   const { filter, userList, handleFilter, clearFilter, toggleFilterModal } =
     useAppContext();
@@ -81,6 +71,8 @@ export default function FilterModalComponents() {
         value={filter.values.email}
         handleChange={handleFilter}
       />
+      {/* All the weird inline styling was done in order to use 
+      the custom calendar icon */}
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
           value={filter.values.createdAt}
@@ -106,6 +98,7 @@ export default function FilterModalComponents() {
               }}
             />
           )}
+          // Use a custom calendar icon
           components={{ OpenPickerIcon: CalendarIconComponent }}
         />
       </LocalizationProvider>

@@ -1,3 +1,5 @@
+@use "../styles/variables";
+
 .filter-form {
   .MuiFormControl-root {
     margin-bottom: 20px;
@@ -7,7 +9,7 @@
     font-family: "Work Sans", sans-serif;
     font-weight: 500;
     font-size: 14px;
-    color: #545f7d;
+    color: variables.$secondary;
     margin-bottom: 6px;
   }
   .MuiOutlinedInput-root {
@@ -15,7 +17,7 @@
     font-family: "Work Sans", sans-serif;
     border-radius: 8px;
     fieldset {
-      border-color: transparentize(#213f7d, 1-0.2);
+      border-color: transparentize(variables.$secondary-light, 1-0.2);
     }
   }
 
@@ -34,7 +36,7 @@
       }
 
       &.reset {
-        border: 1px solid #545f7d;
+        border: 1px solid variables.$secondary-light;
       }
       &.submit {
         color: white;
