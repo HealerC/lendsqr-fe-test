@@ -1,5 +1,6 @@
-import { NavLink, NavLinkProps, useMatch } from "react-router-dom";
 import React from "react";
+import { useAppContext } from "../context/context";
+import { NavLink, NavLinkProps, useMatch } from "react-router-dom";
 import { ListItemText } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -9,14 +10,13 @@ import Collapse from "@mui/material/Collapse";
 import { drawerItems } from "../utils/app-drawer-content";
 import expandMoreIcon from "../assets/icons/expand-more.svg";
 import { DrawerItemBase, DrawerItemDetails } from "../utils/app-drawer-content";
-import "./DrawerItemsComponent.scss";
-import SearchBar from "./SearchBar";
 import Bell from "./Bell";
-import bellIcon from "../assets/icons/bell.svg";
 import ArticleIcon from "@mui/icons-material/Article";
 import Toolbar from "@mui/material/Toolbar";
-import { useAppContext } from "../context/context";
+import "./DrawerItemsComponent.scss";
 
+// A NavLink is used as the component for navigating between the different routes
+// in the app drawer
 const Link = React.forwardRef<HTMLAnchorElement, NavLinkProps>(function Link(
   itemProps,
   ref
@@ -24,13 +24,22 @@ const Link = React.forwardRef<HTMLAnchorElement, NavLinkProps>(function Link(
   return <NavLink ref={ref} {...itemProps} role={undefined} />;
 });
 
+// icon: Icon shown in the buttons of the drawer
+// primary: text shown
+// to: the route in which it navigates to on click
 type ListItemButtonLinkProps = {
   icon?: React.ReactNode;
   primary: string;
   to: string;
 };
+
+// A list item button but which contains a link component that navigates to
+// different
 function ListItemButtonLink({ icon, primary, to }: ListItemButtonLinkProps) {
   const match = useMatch("/" + to + "/*");
+  // Test if the particular route of the button is the active route
+  // so we could give it some styling
+
   return (
     <ListItemButton
       component={Link}
@@ -43,6 +52,8 @@ function ListItemButtonLink({ icon, primary, to }: ListItemButtonLinkProps) {
   );
 }
 
+// An Item is just a ListItem (part of a List which is displayed in the drawer)
+// that just contains a button that navigates to a route
 function Item({
   id,
   icon,
@@ -57,8 +68,11 @@ function Item({
   );
 }
 
+// An ItemWithDetails renders sub items which is initially collapsed
+// These sub items are now `Item`s that could navigate to routes
 function ItemWithDetails({ id, icon, text, details }: DrawerItemDetails) {
   const [expanded, setExpanded] = React.useState(false);
+  // Whether the sub items shows (collapsed or !expanded defaultly)
 
   function handleExpandClick() {
     setExpanded(!expanded);
@@ -75,7 +89,7 @@ function ItemWithDetails({ id, icon, text, details }: DrawerItemDetails) {
               expanded ? "expand-more-icon expanded" : "expand-more-icon"
             }
           >
-            <img src={expandMoreIcon} />
+            <img src={expandMoreIcon} alt={"see more routes in " + text} />
           </ListItemIcon>
         </ListItemButton>
       </ListItem>
@@ -83,6 +97,7 @@ function ItemWithDetails({ id, icon, text, details }: DrawerItemDetails) {
         <div className="collapsible-items-wrapper">
           {details?.map((itemDetails) => (
             <Item
+              key={"itemDetails" + itemDetails.id}
               id={itemDetails.id}
               icon={itemDetails.icon}
               text={itemDetails.text}
@@ -96,7 +111,7 @@ function ItemWithDetails({ id, icon, text, details }: DrawerItemDetails) {
 }
 
 export default function DrawerItemsComponent() {
-  const { toggleFilterModal } = useAppContext();
+  // Render the contents of drawer item as items of the app drawer
   const getItems = () => {
     return Object.keys(drawerItems).map((category) => {
       return (
@@ -104,9 +119,9 @@ export default function DrawerItemsComponent() {
           <p className="category">{category !== "uncategorized" && category}</p>
           {drawerItems[category].map((item) => {
             if (item.details) {
-              return <ItemWithDetails {...item} />;
+              return <ItemWithDetails key={"item" + item.id} {...item} />;
             } else {
-              return <Item {...item} />;
+              return <Item key={"item" + item.id} {...item} />;
             }
           })}
         </List>
@@ -116,23 +131,10 @@ export default function DrawerItemsComponent() {
 
   return (
     <div className="drawer-components">
+      {/* Create space so the buttons are not hidden by the menu bar */}
       <Toolbar sx={{ height: "80px" }} />
-      {/* <List className="drawer-mobile">
-        <Item
-          id="notifications"
-          icon={<img src={bellIcon} />}
-          text="Notifications"
-          route="https://www.google.com"
-          className="notifications-mobile"
-        />
-        <Item
-          id="docs"
-          icon={<ArticleIcon />}
-          text="Documentation"
-          route="https://www.google.com"
-          className="documentation-mobile"
-        />
-      </List> */}
+
+      {/* Notifications and Docs shown only on small screens */}
       <Toolbar className="drawer-mobile">
         <div className="notifications-mobile">
           <Bell />
@@ -143,6 +145,8 @@ export default function DrawerItemsComponent() {
           <p>Docs</p>
         </a>
       </Toolbar>
+
+      {/* Drawer items */}
       {getItems()}
     </div>
   );

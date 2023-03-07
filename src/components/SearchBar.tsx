@@ -23,7 +23,8 @@ export default function SearchBar({
         autoComplete="search"
         placeholder="Search for anything"
         value={value}
-        // onChange={handleChange}
+        onChange={handleChange}
+        readOnly={handleChange ? false : true}
         className="search-text-field"
       />
 
@@ -32,7 +33,7 @@ export default function SearchBar({
         variant="contained"
         onClick={handleSubmit}
       >
-        <img src={SearchIcon} />
+        <img src={SearchIcon} alt="submit search query" />
       </Button>
     </div>
   );

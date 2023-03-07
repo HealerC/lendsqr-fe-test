@@ -1,9 +1,14 @@
 import Drawer from "@mui/material/Drawer";
-import Toolbar from "@mui/material/Toolbar";
 import DrawerItemsComponent from "./DrawerItemsComponent";
 import { useAppContext } from "../context/context";
 import "./AppDrawer.scss";
 
+/**
+ * The app drawer that is rendered on screen
+ * There are two variants here --> temporary and permanent
+ * The temporary variant is rendered on smaller screens
+ * The permanent variant is rendered on larger screens
+ */
 export default function AppDrawer() {
   const { isMobileDrawerOpen, toggleMobileDrawer } = useAppContext();
   return (

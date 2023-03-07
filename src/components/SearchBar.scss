@@ -5,15 +5,6 @@ $search-button-width: 56px;
 .search-bar {
   display: none;
 }
-.search-bar.mobile {
-  display: flex;
-  input {
-    border-radius: 0;
-  }
-  .search-button {
-    border-radius: 0;
-  }
-}
 .search-text-field {
   height: 40px;
   background-color: transparent;
@@ -33,7 +24,7 @@ $search-button-width: 56px;
   color: variables.$secondary;
 
   &::placeholder {
-    color: #545f7d;
+    color: variables.$secondary-light;
   }
   &:hover {
     border-color: hsla(220, 58%, 31%, 0.5);

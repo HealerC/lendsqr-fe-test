@@ -1,11 +1,10 @@
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
-// import profilePicture from "../assets/images/profile-picture.jpg";
 import arrowDownIcon from "../assets/icons/arrow-down.svg";
 import "./Profile.scss";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { useState } from "react";
 
 type MenuProp = {
   text: string;
@@ -41,7 +40,6 @@ export default function Profile({
       >
         <Avatar alt={username} src={profilePicturePath} />
         <p>{username}</p>
-        {/* <img src={arrowDownIcon} /> */}
       </Button>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         {menuProps.map((item, index) => (

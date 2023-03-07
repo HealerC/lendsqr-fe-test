@@ -3,19 +3,17 @@ $drawerWidth: 283px;
 
 .drawer-components {
   .MuiTypography-root {
+    // All the text of the drawer
     font-family: "Work Sans", sans-serif;
-
-    font-style: normal;
     font-weight: 400;
     font-size: 16px;
     text-transform: capitalize;
-
-    // line-height: 19px;
   }
   .MuiListItemButton-root {
     padding-left: 30px;
 
     &.dashboard-link {
+      // The colors that show on the list items normally/when the route is active
       color: variables.$secondary;
       opacity: 0.6;
 
@@ -27,6 +25,7 @@ $drawerWidth: 283px;
     }
 
     .expandable-text {
+      // ListItem with details... The text that shows beside the arrow
       color: variables.$secondary;
     }
   }
@@ -42,10 +41,12 @@ $drawerWidth: 283px;
   }
 }
 .MuiListItemButton-root .MuiListItemIcon-root {
+  // Without this the "Organization" in `Switch Organization` wraps to next line
   min-width: 25px;
 }
 
 .MuiListItemIcon-root.expand-more-icon {
+  // Rotate the arrow on `Switch Organization` when the items are expanded
   img {
     transition: transform 300ms;
   }
@@ -61,11 +62,12 @@ $drawerWidth: 283px;
 }
 
 .drawer-mobile {
+  // The toolbar that contains complements in the menu bar and gradually
+  // displays its contents as the screen becomes smaller
   color: variables.$secondary;
 
   div,
   a {
-    // background-color: aquamarine;
     flex-grow: 1;
     display: flex;
     justify-content: center;
@@ -81,6 +83,7 @@ $drawerWidth: 283px;
 @media (min-width: 910px) {
   .drawer-mobile {
     .notifications-mobile {
+      // At this media breakpoint the notifications button shows in the menu bar
       display: none;
     }
   }
@@ -88,6 +91,7 @@ $drawerWidth: 283px;
 
 @media (min-width: 950px) {
   .MuiToolbar-root.drawer-mobile {
+    // At this breakpoint both docs link and notifications icon shows in the menu bar
     display: none;
     .documentation-mobile {
       display: none;

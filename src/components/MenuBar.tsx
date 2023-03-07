@@ -19,9 +19,13 @@ export default function MenuBar() {
           onClick={toggleMobileDrawer}
           className="hamburger-wrapper"
         >
-          <img src={hamburgerIcon} className="hamburger-icon" />
+          <img
+            src={hamburgerIcon}
+            className="hamburger-icon"
+            alt="toggle app drawer"
+          />
         </IconButton>
-        <img src={Logo} className="app-logo-menubar" />
+        <img src={Logo} className="app-logo-menubar" alt="app logo" />
       </div>
       <main>
         <SearchBar
